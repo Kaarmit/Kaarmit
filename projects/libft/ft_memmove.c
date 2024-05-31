@@ -1,20 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 14:34:43 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/05/23 16:44:13 by aarmitan         ###   ########.fr       */
+/*   Created: 2024/05/20 15:46:26 by aarmitan          #+#    #+#             */
+/*   Updated: 2024/05/23 15:05:15 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
+#include <stddef.h>
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	unsigned char	*s1;
+	unsigned char	*s2;
+
+	s1 = (unsigned char *)dest;
+	s2 = (unsigned char *)src;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	if (s1 <= s2 || s1 >= (s2 + n))
+		while (n--)
+			*s1++ = *s2++;
+	else
+	{
+		s1 += n - 1;
+		s2 += n - 1;
+		while (n--)
+			*s1-- = *s2--;
+	}
+	return (dest);
 }

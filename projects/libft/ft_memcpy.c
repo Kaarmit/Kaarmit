@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 14:34:43 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/05/23 16:44:13 by aarmitan         ###   ########.fr       */
+/*   Created: 2024/05/20 15:11:39 by aarmitan          #+#    #+#             */
+/*   Updated: 2024/05/28 15:26:52 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	unsigned char		*d;
+	const unsigned char	*s;
+
+	d = (unsigned char *)dest;
+	s = (const unsigned char *)src;
+	if (dest == NULL && src == NULL)
+		return (NULL);
+	while (n--)
+	{
+		*d = *s;
+		d++;
+		s++;
+	}
+	return (dest);
 }

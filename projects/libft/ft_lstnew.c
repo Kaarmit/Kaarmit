@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 14:34:43 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/05/23 16:44:13 by aarmitan         ###   ########.fr       */
+/*   Created: 2024/05/31 10:37:32 by aarmitan          #+#    #+#             */
+/*   Updated: 2024/05/31 10:51:51 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+t_list	*ft_lstnew(void *content)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	t_list	*nodes;
+
+	nodes = (t_list *)malloc(sizeof(t_list));
+	if (nodes == NULL)
+		return (NULL);
+	nodes->content = content;
+	nodes->next = NULL;
+	return (nodes);
 }

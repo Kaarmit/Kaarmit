@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/20 14:34:43 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/05/23 16:44:13 by aarmitan         ###   ########.fr       */
+/*   Created: 2024/05/20 17:12:09 by aarmitan          #+#    #+#             */
+/*   Updated: 2024/05/31 16:25:50 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+int	ft_atoi(const char *nptr)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	int	i;
+	int	sign;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	sign = 1;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || (nptr[i] == 32))
+		i++;
+	if (nptr[i] == '-')
+	{
+		sign *= -1;
+		i++;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nb = nb * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return (nb * sign);
 }
