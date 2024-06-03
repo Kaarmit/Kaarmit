@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:02:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/03 17:16:17 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:25:28 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int	ft_putstr(char *str, int *output)
 		ft_putchar(str[i], output);
 		i++;
 	}
-	return (i)
+	return (i);
 }
+
 void	print_type(const char c, va_list value, int *output)
 {
 	if (c == 'c')
@@ -51,7 +52,7 @@ void	print_type(const char c, va_list value, int *output)
 		ft_putnbr(va_arg(value, int), output);
 	else if (c == 'u')
 		ft_putnbr_unsigned(va_arg(value, unsigned int), output);
-	else if (c == 'x'|| c == 'X')
+	else if (c == 'x' || c == 'X')
 		ft_put_hex(va_arg(value, unsigned int), output);
 	else if (c != 0)
 		ft_putchar(c);
@@ -60,8 +61,8 @@ void	print_type(const char c, va_list value, int *output)
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int	output;
-	int	i;
+	int		output;
+	int		i;
 
 	va_start(args, str);
 	output = 0;
