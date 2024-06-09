@@ -1,29 +1,29 @@
+
 NAME = libftprintf.a
-FLAGS = -Wall -Wextra -Werror
-SRCS = srcs/ft_printf.c srcs/ft_print_hexa.c srcs/ft_print_id.c srcs/ft_print_ptr.c \
-		srcs/ft_print_u.c \
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+AR = ar
+ARFLAGS = rcs
+HEADER = ft_printf.h
+SOURCES = ft_printf.c ft_print_hexa.c ft_print_id.c ft_print_ptr.c \
+		ft_print_u.c
+OBJECTS = $(SOURCES:.c=.o)
+BONUS_OBJECTS = $(BONUS_SOURCES:.c=.o)
 
-OBJS = ${SRCS:.c=.o}
+.PHONY: all clean fclean re bonus
 
-all: ${NAME}
+all: $(NAME)
 
-.c.o:
-	${CC} ${CFLAGS} -c -I $(INCLUDES) $< -o ${<:.c=.o}
+$(NAME): $(OBJECTS)
+	$(AR) $(ARFLAGS) $@ $^
 
-${NAME}: ${OBJS}
-	@make -C libft
-	@cp libft/libft.a .
-	@mv libft.a ${NAME}
-	${AR} ${NAME} ${OBJS}
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -I. -c $< -o $@
 
 clean:
-	@make clean -C libft
-	rm -f ${OBJS}
+	rm -f $(OBJECTS)
 
-fclean:		clean
-	rm -f libft/libft.a
-	rm -f ${NAME}
+fclean: clean
+	rm -f $(NAME)
 
-re:	fclean all
-
-.PHONY: all clean fclean re libft
+re: fclean all
