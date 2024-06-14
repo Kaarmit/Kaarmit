@@ -6,15 +6,21 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/09 18:55:56 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/12 15:40:52 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:08:03 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+char	*ft_strjoin(const char *s1, const char *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	*ft_strdup(const char *s1);
+char	*ft_strchr(const char *s, int c);
+size_t	ft_strlen(const char *s);
+
 char	*fill_line_buffer(int fd, char *stash, char *buffer)
 {
-	int	bytes_read;
+	int		bytes_read;
 	char	*temp;
 
 	bytes_read = 1;
@@ -27,16 +33,15 @@ char	*fill_line_buffer(int fd, char *stash, char *buffer)
 			return (NULL);
 		}
 		else if (bytes_read == 0)
-			break;
-		buffer[bytes_read] = 0;
+			break ;
+		buffer[bytes_read] = '\0';
 		if (!stash)
 			stash = ft_strdup("");
 		temp = stash;
 		stash = ft_strjoin(temp, buffer);
 		free(temp);
-		temp = NULL;
 		if (ft_strchr(buffer, '\n'))
-			break;
+			break ;
 	}
 	return (stash);
 }
@@ -49,16 +54,16 @@ char	*set_line(char *line_buffer)
 	i = 0;
 	while (line_buffer[i] != '\n' && line_buffer[i])
 		i++;
-	if (line_buffer[0] == 0 || line_buffer[1] == 0)
+	if (line_buffer[i] == '\0')
 		return (NULL);
-	stash = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - i);
-	if (*stash == 0)
+	stash = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - (i + 1));
+	if (*stash == '\0' || !stash)
 	{
 		free(stash);
 		stash = NULL;
 	}
-	line_buffer[i + 1] = 0;
-	return(stash);
+	line_buffer[i + 1] = '\0';
+	return (stash);
 }
 
 char	*get_next_line(int fd)
@@ -67,19 +72,19 @@ char	*get_next_line(int fd)
 	char		*line;
 	char		*buffer;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (fd < 0 || BUFFER_SIZE <= 0 || !buffer)
+	if (!buffer || read(fd, buffer, 0) < 0)
 	{
 		free(stash);
 		free(buffer);
 		stash = NULL;
 		return (NULL);
 	}
-	if (!buffer)
-		return (NULL);
 	line = fill_line_buffer(fd, stash, buffer);
 	free(buffer);
-	if (!stash)
+	if (!line)
 		return (NULL);
 	stash = set_line(line);
 	return (line);
