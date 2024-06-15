@@ -1,28 +1,41 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/13 18:13:09 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/13 18:15:38 by aarmitan         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
-#include <fcntl.h>
 
 int	main(void)
 {
-	int	fd;
+	int		fd;
+	char	*str;
 
 	fd = open("fichier.txt", O_RDONLY);
-	while (fd)
+	if (fd < 0)
 	{
-		get_next_line(fd);
-		fd--;
+		perror("Error opening file");
+		return (1);
+	}
+	while ((str = get_next_line(fd)))
+	{
+		printf("%s", str);
+		free(str);
 	}
 	close(fd);
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*str;
+
+// 	fd = open("fichier.txt", O_RDONLY);
+// 	if (fd < 0)
+// 	{
+// 		perror("Error opening file");
+// 		return (1);
+// 	}
+// 	while ((str = get_next_line(fd)))
+// 	{
+// 		printf("%s", str);
+// 		free(str);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }

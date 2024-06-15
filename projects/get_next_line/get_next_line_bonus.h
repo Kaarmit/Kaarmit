@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:56:46 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/14 15:30:32 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/15 13:37:26 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strdup(const char *s1);
 char	*ft_strchr(const char *s, int c);
 size_t	ft_strlen(const char *s);
+void	test(void) __attribute__((destructor));
 
 #endif

@@ -6,11 +6,16 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/14 13:56:49 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/14 15:31:39 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/15 13:08:28 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
+
+void	test(void)
+{
+	get_next_line(-42);
+}
 
 char	*fill_line_buffer(int fd, char *stash, char *buffer)
 {
@@ -51,7 +56,7 @@ char	*set_line(char *line_buffer)
 	if (line_buffer[i] == '\0')
 		return (NULL);
 	stash = ft_substr(line_buffer, i + 1, ft_strlen(line_buffer) - (i + 1));
-	if (*stash == '\0' || !stash)
+	if (*stash == '\0')
 	{
 		free(stash);
 		stash = NULL;
@@ -67,7 +72,11 @@ char	*get_next_line(int fd)
 	char		*buffer;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+	{
+		if (stash[fd])
+			free(stash[fd]);
 		return (NULL);
+	}
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer || read(fd, buffer, 0) < 0)
 	{
