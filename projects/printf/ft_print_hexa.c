@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:06:54 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/09 14:24:34 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:08:05 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ void	ft_puthex(unsigned int n, const char c)
 	else
 	{
 		if (n <= 9)
-			ft_putchar_fd((n + '0'), 1);
+			ft_printchar(n + '0');
 		else
 		{
 			if (c == 'x')
-				ft_putchar_fd((n - 10 + 'a'), 1);
+				ft_printchar(n - 10 + 'a');
 			if (c == 'X')
-				ft_putchar_fd((n - 10 + 'A'), 1);
+				ft_printchar(n - 10 + 'A');
 		}
 	}
 }

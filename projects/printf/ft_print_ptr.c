@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 16:07:24 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/09 15:32:37 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:20:05 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_putptr(uintptr_t n)
 	else
 	{
 		if (n <= 9)
-			ft_putchar_fd((n + '0'), 1);
+			ft_printchar(n + '0');
 		else
-			ft_putchar_fd((n - 10 + 'a'), 1);
+			ft_printchar(n - 10 + 'a');
 	}
 }
 

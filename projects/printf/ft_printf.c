@@ -6,16 +6,11 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:02:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/09 16:22:00 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:20:41 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	ft_putchar_fd(char c, int fd)
-{
-	write(fd, &c, 1);
-}
 
 int	ft_printchar(int c)
 {
