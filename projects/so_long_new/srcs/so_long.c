@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:46:45 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/12 12:01:00 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:12:44 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	main(int ac, char **av)
 	if (ac == 2 && (is_ber_file(av[1])))
 		init_game(&game, av[1]);
 	else if (ac == 2 && !(is_ber_file(av[1])))
-		end_game("Format not supported!", &game, file_error, NULL);
+		end_game(ERRBER, &game, file_error, NULL);
 	else if (ac > 2)
-		end_game("Can't open multiple files!", &game, file_error, NULL);
+		end_game(ERRARG, &game, file_error, NULL);
 	else if (ac < 2)
-		end_game("Missing .ber file!", &game, file_error, NULL);
+		end_game(ERRARG0, &game, file_error, NULL);
 	else
-		end_game("Please specify file name!", &game, file_error, NULL);
+		end_game(ERRFILE, &game, file_error, NULL);
 	return (0);
 }

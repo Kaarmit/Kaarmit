@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:36:10 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/12 12:15:35 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:30:13 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@
 # define KEY_RELEASED 3
 # define EXIT_MASK 0
 # define KEY_MASK 2
+# define ERRPLAYER "This is a single player game"
+# define ERRBER "Wrong file type"
+# define ERRELEM "Wrong number of elements (Exit / Collectibles)"
+# define ERRARG "Too many files"
+# define ERRARG0 "Missing .ber file"
+# define ERRFILE "Please specify file name"
+# define ERRFILE1 "this file is empty"
+# define WINNER "Winner, winner, chicken dinner"
+# define ERRPOINTER "Invalid pointer(s) passed to mlx_put_image_to_window"
+# define ERRECT "This map is not rectangular"
+# define ERRWALLS "The map is not surronded by walls"
+# define UNKNOWN "Unknown element"
+# define ERRSAVE "An error occured while saving the map"
+# define ERRSAVE1 "Could not save the map"
+# define ERRMAP "The map is unplayable! Closing the game"
+# define ERRMLX "Fail init MLX"
+# define ERRWIN "Fail creating the window"
+# define ERROPEN "Error trying to open the map"
 
 // INCLUDES
 # include "../includes/libft.h"

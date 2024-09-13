@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:47:03 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/12 12:19:19 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:15:35 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	move_to(int x, int y, void *dir, t_game *game)
 	game->moves++;
 	put_text(game);
 	if (game->map[y][x] == 'E' && game->nb_c == 0)
-		end_game("Congratulation you win!", game, event_end, NULL);
+		end_game(WINNER, game, event_end, NULL);
 	game->map[y][x] = 'P';
 	show_table(game->map);
 }

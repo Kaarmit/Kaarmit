@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:46:32 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/12 12:00:44 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:30:30 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	join_me(char **lines, char **curr, t_game *game)
 	free(tmp);
 	free(*curr);
 	if (!(*lines))
-		end_game("Error trying saving the map.", game, file_error, NULL);
+		end_game(ERRSAVE, game, file_error, NULL);
 }
 
 void	pass_empty_lines(char **lines, int *fd, t_game *game, int *err)
 {
 	*lines = get_next_line(*fd, err);
 	if (!(*lines))
-		end_game("This file is empty!", game, file_error, NULL);
+		end_game(ERRFILE1, game, file_error, NULL);
 	while (*lines && *lines[0] == '\n')
 	{
 		free(*lines);
@@ -45,7 +45,7 @@ char	**get_map(char *map_file, t_game *game, int err)
 
 	fd = open(map_file, O_RDONLY);
 	if (fd < 0)
-		end_game("Error trying opening the map.", game, file_error, NULL);
+		end_game(ERROPEN, game, file_error, NULL);
 	pass_empty_lines(&lines, &fd, game, &err);
 	curr = get_next_line(fd, &err);
 	if (!curr)
@@ -60,7 +60,7 @@ char	**get_map(char *map_file, t_game *game, int err)
 		join_me(&lines, &curr, game);
 		curr = get_next_line(fd, &err);
 		if (err == 1)
-			end_game("Error trying saving the map.", game, file_error, NULL);
+			end_game(ERRSAVE, game, file_error, NULL);
 	}
 	return (ft_split(lines, '\n'));
 }

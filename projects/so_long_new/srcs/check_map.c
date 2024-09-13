@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:02:17 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/12 15:37:06 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/09/13 14:33:38 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,19 @@ void	is_map_playable(t_game *game, char *map_file, int err)
 
 	map_clone = get_map(map_file, game, err);
 	if (!map_clone)
-		end_game("An error occurred saving the map.", game, map_error, NULL);
+		end_game(ERRSAVE, game, map_error, NULL);
 	collected = fill(map_clone, game->map_size, game->p_pos, "CP0");
 	free_map(map_clone);
 	if (collected == game->nb_c)
 	{
 		map_clone = get_map(map_file, game, err);
 		if (!map_clone)
-			end_game("Could not save the map.", game, map_error, NULL);
+			end_game(ERRSAVE1, game, map_error, NULL);
 		collected = fill(map_clone, game->map_size, game->p_pos, "ECP0");
 		free_map(map_clone);
 	}
 	if (collected != game->nb_c + 1)
-		end_game("Unplayable map. Aborting, bye!", game, map_error, NULL);
+		end_game(ERRMAP, game, map_error, NULL);
 	return ;
 }
 
@@ -70,7 +70,7 @@ void	check_map_rect(t_game *game)
 		if (temp != 0)
 		{
 			if (temp != x)
-				end_game("This map is not rectangular!", game, map_error, NULL);
+				end_game(ERRECT, game, map_error, NULL);
 		}
 		else
 			temp = x;
@@ -83,17 +83,17 @@ void	check_map_walls(t_game *game)
 	int	end;
 
 	if (check_line(game->map[0]))
-		end_game("Map not surrounded by walls!", game, map_error, NULL);
+		end_game(ERRWALLS, game, map_error, NULL);
 	i = game->map_size.y - 1;
 	while (i)
 	{
 		end = ft_strlen(game->map[i]) - 1;
 		if (!is_wall(game, i, 0) || !is_wall(game, i, end))
-			end_game("Map not surrounded by walls!", game, map_error, NULL);
+			end_game(ERRWALLS, game, map_error, NULL);
 		i--;
 	}
 	if (check_line(game->map[game->map_size.y - 1]))
-		end_game("Map not surrounded by walls!", game, map_error, NULL);
+		end_game(ERRWALLS, game, map_error, NULL);
 }
 
 void	check_map_elem(t_game *game, t_game_map *map)
@@ -115,35 +115,12 @@ void	check_map_elem(t_game *game, t_game_map *map)
 				game->nb_c++;
 			else if (game->map[map->y][map->x] != '1')
 				if (game->map[map->y][map->x] != '0')
-					end_game("Unknown element.", game, map_error, NULL);
+					end_game(UNKNOWN, game, map_error, NULL);
 			map->x++;
 		}
 	}
-	if (game->nb_c < 1 || map->p != 1 || map->e != 1)
-		end_game("Wrong number of elements", game, map_error, NULL);
-}
-
-// -----------------------------------------------------------------------
-// DELETE THIS LATER
-void	show_table(char **map)
-{
-	int	height;
-	int	y;
-	int	x;
-
-	height = get_height(map) - 1;
-	ft_printf("\n\tShowing map...\n\n");
-	y = 0;
-	while (y <= height)
-	{
-		x = 0;
-		while (map[y][x] != '\0')
-		{
-			ft_printf("%c ", map[y][x]);
-			x++;
-		}
-		y++;
-		ft_printf("\n");
-	}
-	ft_printf("\n");
+	if (game->nb_c < 1 || map->e != 1)
+		end_game(ERRELEM, game, map_error, NULL);
+	else if (map->p != 1)
+		end_game(ERRPLAYER, game, map_error, NULL);
 }
