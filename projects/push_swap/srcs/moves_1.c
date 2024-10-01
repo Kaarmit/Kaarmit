@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:53:50 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/01 15:53:13 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:21:14 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,19 +107,69 @@ void	rb(t_node **stack_b)
 		first = *stack_b;
 		last = *stack_b;
 		while (last->next)
-		{
 			last = last->next;
-		}
 		*stack_b = first->next;
 		first->next = NULL;
 		last->next = first;
 	}
 }
 
-RR
+void	rr(t_node **stack_a, t_node **stack_b)
+{
+	ra(stack_a);
+	rb(stack_b);
+}
+void	rra(t_node **stack_a)
+{
+	t_node	*first;
+	t_node	*last;
+	t_node	*second_last;
 
-RRA
+	if (*stack_a && (*stack_a)->next)
+	{
+		first = *stack_a;
+		last = *stack_a;
+		// Find the last node
+		while (last->next)
+		{
+			last = last->next;
+		}
+		// Find the second last node
+		second_last = *stack_a;
+		while (second_last->next != last)
+		{
+			second_last = second_last->next;
+		}
+		// Perform the rotation
+		second_last->next = NULL; // Disconnect the last node
+		last->next = first;       // Set last's next to the current first node
+		*stack_a = last;          // Move last to the front
+	}
+}
 
-RRB
+void	rrb(t_node **stack_b;)
+{
+	t_node	*first;
+	t_node	*last;
+	t_node	*second_last;
 
-RRR 
+	if(*stack_b && (*stack_b)->next)
+	{
+		first = *stack_b;
+		last = *stack_b;
+		while (last->next)
+			last = last->next;
+		second_last = *stack_b;
+		while (second_last->next != last)
+			second_last = second_last->next;
+		second_last->next = NULL;
+		last->next = first;
+		*stack_b = last;
+	}
+}
+
+void	rrr(t_node **stack_a, t_node **stack_b)
+{
+	rra(stack_a);
+	rrb(stack_b);
+}
