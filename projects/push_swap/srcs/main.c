@@ -6,11 +6,11 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:39:06 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/02 13:54:33 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:37:26 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.c"
+#include "../includes/push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 	t_node	*stack_b;
 	int		value;
 	t_node	*current;
-	t_node	*temp;
 	t_node	*temp;
 
 	stack_a = NULL;

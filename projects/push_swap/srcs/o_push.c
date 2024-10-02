@@ -6,11 +6,12 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:09:27 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/02 13:09:30 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:28:23 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 // pa: push top of stack_b to stack_a
 void	pa(t_node **stack_a, t_node **stack_b, int j)
 {

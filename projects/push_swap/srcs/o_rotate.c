@@ -6,11 +6,12 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:09:08 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/02 13:09:12 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:28:28 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 void	ra(t_node **stack_a, int j)
 {
 	t_node *first, *last;

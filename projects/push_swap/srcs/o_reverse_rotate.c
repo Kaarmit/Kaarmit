@@ -6,11 +6,12 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:09:18 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/02 13:09:22 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:28:25 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 // rra: reverse rotate stack_a
 void	rra(t_node **stack_a, int j)
 {

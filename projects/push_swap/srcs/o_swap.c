@@ -6,11 +6,12 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 13:53:50 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/02 13:09:02 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:28:30 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
 // sa: swap the first two elements of stack_a
 int	sa(t_node **stack_a, int j)
 {

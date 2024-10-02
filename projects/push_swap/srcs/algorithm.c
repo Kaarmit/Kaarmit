@@ -6,9 +6,11 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 12:36:45 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/02 14:13:26 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:30:28 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../includes/push_swap.h"
 
 void	final_sort(t_node **stack_a)
 {
@@ -24,7 +26,7 @@ void	final_sort(t_node **stack_a)
 		min_node = min_node->next;
 	}
 	while ((*stack_a)->value != min_val)
-		ra(stack_a);
+		ra(stack_a, 0);
 }
 
 void	turk_algorithm(t_node **stack_a, t_node **stack_b)
@@ -35,5 +37,5 @@ void	turk_algorithm(t_node **stack_a, t_node **stack_b)
 		push_cheapest_to_b(stack_a, stack_b);
 	sort_three(stack_a);
 	push_back_to_a(stack_a, stack_b);
-	final_sort(stack_a, 1);
+	final_sort(stack_a);
 }
