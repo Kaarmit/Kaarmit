@@ -1,0 +1,72 @@
+Certainly! Here's a step-by-step checklist to help you implement the Turk Algorithm for the Push_swap project. Follow these steps to ensure that your algorithm is implemented correctly and efficiently.
+1. Setup & Initialization
+
+Parse input: Convert command line arguments into integers and store them in stack_a.
+Check for duplicates and invalid input: Ensure that all input values are valid and that there are no duplicate numbers.
+
+    Initialize stacks: Create and initialize two stacks (stack_a and stack_b).
+
+<!-- 2. Utility Functions
+
+    Stack operations: Implement basic stack operations:
+        sa: Swap the top two elements of stack_a.
+        sb: Swap the top two elements of stack_b.
+        ss: Swap both stack_a and stack_b simultaneously.
+        pa: Push the top element from stack_b to stack_a.
+        pb: Push the top element from stack_a to stack_b.
+        ra: Rotate stack_a.
+        rb: Rotate stack_b.
+        rr: Rotate both stack_a and stack_b simultaneously.
+        rra: Reverse rotate stack_a.
+        rrb: Reverse rotate stack_b.
+        rrr: Reverse rotate both stack_a and stack_b simultaneously. -->
+
+3. Initial Setup in stack_b
+
+Push two numbers from stack_a to stack_b: As described in the Turk Algorithm, push the first two numbers from stack_a to stack_b without any conditions.
+
+        Implement pb(stack_a, stack_b) to push two numbers.
+
+4. Find the Cheapest Number in stack_a
+
+Cheapest number calculation: For each remaining number in stack_a, calculate the number of operations required to push it into the correct position in stack_b.
+
+Rotate or reverse rotate stack_b to find the correct position for the number being pushed.
+
+        Optimize rotations: Use simultaneous rotations (rr and rrr) to minimize operations when rotating both stacks.
+
+5. Push Numbers to stack_b
+
+Push the cheapest number to stack_b: After finding the number that requires the fewest operations, push it to stack_b using pb.
+
+    Repeat the process: Continue finding and pushing the next cheapest number from stack_a to stack_b until there are only three numbers left in stack_a.
+
+6. Sort the Last Three Numbers in stack_a
+
+    Sort three numbers in stack_a: Implement logic to sort the last three numbers in stack_a using just one or two operations. Use combinations of sa, ra, and rra to achieve this.
+        Special Cases: Handle the following:
+            3-2-1 (fully descending order).
+            1-3-2 (where the two largest numbers are swapped).
+
+7. Push Elements Back to stack_a
+
+Push elements back from stack_b to stack_a: After sorting stack_b, push the elements back to stack_a one by one, ensuring they are inserted in the correct order.
+
+    Use reverse rotations: If needed, use rra and rrb to rotate elements into the correct position in stack_a and stack_b.
+
+8. Final Arrangement
+
+Ensure the smallest element is on top: Use ra or rra to bring the smallest element to the top of stack_a to complete the sorting.
+
+    Check the final sorted order: Ensure that stack_a is fully sorted and stack_b is empty.
+
+9. Optimize Rotations
+
+    Simultaneous rotations: Whenever possible, use rr or rrr to minimize the number of operations when rotating both stacks.
+
+10. Testing & Debugging
+
+Test with small input: Test the algorithm with small lists (e.g., 3-5 elements) to verify that each part of the algorithm works as expected.
+Test with larger input: Gradually test larger lists to check efficiency and correctness.
+Edge cases: Handle edge cases like already sorted lists, reversed lists, or lists with only one or two elements.
+Check for memory leaks: Ensure that all allocated memory (for stacks and nodes) is properly freed after execution.
