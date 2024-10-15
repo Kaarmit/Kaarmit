@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:46:13 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/14 09:46:15 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:46:48 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	init_img(t_game *game)
 	game->exit_img = save_that_img("./assets/exit.xpm", game);
 	game->collec_img = save_that_img("./assets/collec.xpm", game);
 	game->bg_img = save_that_img("./assets/ground.xpm", game);
-	if (!game->wall_img || !game->pac_img_d || !game->pac_img_d || !game->pac_img_r || !game->pac_img_u || !game->exit_img || !game->collec_img || !game->bg_img)
-		end_game("__ASSET_ERROR__ : Error while retrieving assets", game, asset_error, NULL);
-
+	if (!game->wall_img || !game->pac_img_d || !game->pac_img_d
+		|| !game->pac_img_r || !game->pac_img_u || !game->exit_img
+		|| !game->collec_img || !game->bg_img)
+		end_game("__ASSET_ERROR__ : Error while retrieving assets", game,
+			asset_error, NULL);
 }
 
 void	update_values(int *map_x, int *x, int *map_size_x)
