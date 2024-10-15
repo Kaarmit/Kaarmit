@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:58:52 by ilymegy           #+#    #+#             */
-/*   Updated: 2024/10/14 16:04:16 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:39:05 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	extract_me(t_gnl *str, char **line)
 
 	create_line(str, line);
 	if (!(*line))
-		return ;
+		return;
 	j = 0;
 	while (str)
 	{

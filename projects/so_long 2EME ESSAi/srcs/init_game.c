@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:45:51 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/13 14:28:23 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:02:53 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	init_vars(t_game *game)
 {
+
 	game->map_size.x = ft_strlen(game->map[0]);
 	game->map_size.y = get_height(game->map);
 	game->nb_c = 0;
