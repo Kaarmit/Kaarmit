@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:54:12 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/12 14:57:31 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:29:54 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 				else
 					nbr2 -= nbr1;
 			}
-			printf("d", nbr1);
+			printf("%d", nbr1);
 		}
 	}
 	printf("\n");

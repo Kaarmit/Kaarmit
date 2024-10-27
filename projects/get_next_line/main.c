@@ -31,66 +31,66 @@ int	main(void)
 	return (0);
 }
 
-// #include "get_next_line.h"
+#include "get_next_line.h"
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*str;
+int	main(void)
+{
+	int		fd;
+	char	*str;
 
-// 	fd = open("fichier.txt", O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		perror("Error opening file");
-// 		return (1);
-// 	}
-// 	while ((str = get_next_line(fd)))
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
+	fd = open("fichier.txt", O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	while ((str = get_next_line(fd)))
+	{
+		printf("%s", str);
+		free(str);
+	}
+	close(fd);
+	return (0);
+}
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*str;
+int	main(void)
+{
+	int		fd;
+	char	*str;
 
-// 	fd = open("fichier.txt", O_RDONLY);
-// 	if (fd < 0)
-// 	{
-// 		perror("Error opening file");
-// 		return (1);
-// 	}
-// 	while ((str = get_next_line(fd)))
-// 	{
-// 		printf("%s", str);
-// 		free(str);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
+	fd = open("fichier.txt", O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	while ((str = get_next_line(fd)))
+	{
+		printf("%s", str);
+		free(str);
+	}
+	close(fd);
+	return (0);
+}
 
 
-// # include <fcntl.h>
+# include <fcntl.h>
 
-// int main(void) {
-// 	int fd = open ("fichier.txt", O_RDONLY);
-// 	char *line = get_next_line(-1);
-// 	if (line == NULL)
-// 		printf("null\n");
-// 	else {
-// 		printf("%s", line);
-// 		free(line);
-// 	}
-// 	line = get_next_line(fd);
-// 	if (line == NULL)
-// 		printf("null\n");
-// 	else {
-// 		printf("%s", line);
-// 		free(line);
-// 	}
-// 	return 0;
-// }
+int main(void) {
+	int fd = open ("fichier.txt", O_RDONLY);
+	char *line = get_next_line(-1);
+	if (line == NULL)
+		printf("null\n");
+	else {
+		printf("%s", line);
+		free(line);
+	}
+	line = get_next_line(fd);
+	if (line == NULL)
+		printf("null\n");
+	else {
+		printf("%s", line);
+		free(line);
+	}
+	return 0;
+}

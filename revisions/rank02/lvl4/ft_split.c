@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 17:18:13 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/09 17:28:26 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/15 09:05:46 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,12 @@ char	**ft_split(char *str)
 	{
 		while (str[i] && (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'))
 			i++;
+		j = i;
 		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
 			i++;
 		if (i > j)
 		{
-			out[k] = (char *)malloc(sizeof(char) * ((i -j) + 1));
+			out[k] = (char *)malloc(sizeof(char) * ((i - j) + 1));
 			ft_strncpy(out[k++], &str[j], i - j);
 		}
 	}

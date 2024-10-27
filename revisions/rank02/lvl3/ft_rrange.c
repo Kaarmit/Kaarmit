@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 14:34:13 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/12 14:40:13 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:10:52 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	*ft_rrange(int start, int end)
 {
 	int	*range;
-	int	i=0;
+	int	i = 0;
 	int	step = 1;
 	int	n = end - start;
 
