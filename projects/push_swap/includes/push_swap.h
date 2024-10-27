@@ -7,16 +7,11 @@
 
 typedef struct s_node
 {
-	int				value;
+	int				nbr;
 	int				index;
-	int				cost;
-	bool			above_median;
-	bool			cheapest;
-	struct s_node	*target_node;
-	struct s_node	*prev;
 	struct s_node	*next;
-}					t_node;
+}	t_node;
 
-// Functions
+
 
 
