@@ -5,36 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/27 09:59:22 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/27 10:06:55 by aarmitan         ###   ########.fr       */
+/*   Created: 2024/10/30 16:05:59 by aarmitan          #+#    #+#             */
+/*   Updated: 2024/10/30 16:06:12 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	push(t_node **s_out, t_node **s_in)
+static void	ft_push(t_stack **stack_src, t_stack **stack_dest)
 {
-	t_node	*change;
+	t_stack	*tmp;
 
-	change = *s_out;
-	*s_out = change->next;
-	change->next = *s_in;
-	*s_in = change;
+	tmp = (*stack_src)->next;
+	(*stack_src)->next = *stack_dest;
+	*stack_dest = *stack_src;
+	*stack_src = tmp;
 }
 
-
-void	pb(t_node **sa, t_node **sb)
+void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	if (!sa || !sb)
-		return ;
-	ft_printf("pb\n");
-	push(sa, sb);
-}
-
-void	pa(t_node **sa, t_node **sb)
-{
-	if (!sa || !sb)
-		return ;
+	ft_push(stack_b, stack_a);
 	ft_printf("pa\n");
-	push(sb, sa);
+}
+
+void	pb(t_stack **stack_a, t_stack **stack_b)
+{
+	ft_push(stack_a, stack_b);
+	ft_printf("pb\n");
 }

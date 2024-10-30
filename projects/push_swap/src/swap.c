@@ -6,39 +6,39 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/27 10:02:32 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/27 10:07:05 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:07:49 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	swap(t_node **s)
+static void	ft_swap(t_stack *stack)
 {
-	t_node	*begin;
-	t_node	*second;
+	int	tmp;
 
-	begin = *s;
-	second = begin->next;
-	begin->next = second->next;
-	second->next = begin;
-	*stack = second;
+	tmp = stack->data;
+	stack->data = stack->next->data;
+	stack->next->data = tmp;
+	tmp = stack->index;
+	stack->index = stack->next->index;
+	stack->next->index = tmp;
 }
 
-void	sa(t_node **sa)
+void	sa(t_stack **stack_a)
 {
+	ft_swap(*stack_a);
 	ft_printf("sa\n");
-	swap(sa);
 }
 
-void	sb(t_node **sb)
+void	sb(t_stack **stack_b)
 {
+	ft_swap(*stack_b);
 	ft_printf("sb\n");
-	swap(sb);
 }
 
-void	ss(t_node **sa, t_node **sb)
+void	ss(t_stack **stack_a, t_stack **stack_b)
 {
+	ft_swap(*stack_a);
+	ft_swap(*stack_b);
 	ft_printf("ss\n");
-	swap(sa);
-	swap(sb);
 }
