@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:16:41 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/11/20 16:26:32 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:49:49 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,24 @@ typedef struct s_program
 	pthread_mutex_t	write_lock;
 	t_philo			*philos;
 }					t_program;
+
+
+
+void	init_args(t_philo *philo, char **argv);
+void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
+		char **argv);
+void	init_forks(pthread_mutex_t *forks, int philo_num);
+void	init_program(t_program *program, t_philo *philos);
+void    print_philo(int num, t_program *program);
+int	check_args_number(char *arg);
+int	check_args_validty(char **argv);
+int	main(int argc, char **argv);
+int	ft_atoi(char *str);
+int	ft_strlen(char *str);
+size_t	get_current_time(void);
+int	ft_usleep(size_t milliseconds);
+void	destory_all(char *str, t_program *program, pthread_mutex_t *forks);
+
+
 
 #endif
