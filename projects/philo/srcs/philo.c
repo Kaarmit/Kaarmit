@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:37:42 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/12/10 18:33:27 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:11:36 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_args_number(char *arg)
 	i = 0;
 	while (arg[i])
 	{
-		if (arg[i] < '0' && arg[i] > '9')
+		if (arg[i] < '0' || arg[i] > '9')
 			return (1);
 		i++;
 	}
@@ -28,7 +28,8 @@ int	check_args_number(char *arg)
 
 int	check_args_validty(char **argv)
 {
-	if (atoi(argv[1]) > PHILO_MAX || check_args_number(argv[1]) == 1 || atoi(argv[1]) < 0)
+	if (atoi(argv[1]) > PHILO_MAX || check_args_number(argv[1]) == 1
+		|| atoi(argv[1]) <= 0)
 		return (write(2, "Invalid philosophers number\n", 29), 1);
 	if (ft_atoi(argv[2]) <= 0 || check_args_number(argv[2]) == 1)
 		return (write(2, "Invalid time to die\n", 21), 1);

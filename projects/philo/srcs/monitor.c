@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:25:42 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/12/09 15:11:29 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:44:25 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	check_if_all_ate(t_philo *philos)
 	while (i < philos[0].nbr_of_philos)
 	{
 		pthread_mutex_lock(philos[i].meal_lock);
-		if (philos[i].meals_eaten >= philos[i].nbr_of_times_to_eat)
+		if (philos[i].meals_eaten > philos[i].nbr_of_times_to_eat)
 			finished_eating++;
 		pthread_mutex_unlock(philos[i].meal_lock);
 		i++;
@@ -86,7 +86,10 @@ void	*monitor(void *pointer)
 
 	philos = (t_philo *)pointer;
 	while (1)
+	{
 		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
 			break ;
+		usleep(1000);
+	}
 	return (pointer);
 }

@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:18:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/12/09 13:11:50 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:47:57 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_args(t_philo *philo, char **argv)
 	else
 		philo->nbr_of_times_to_eat = -1;
 }
-
 
 void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
 		char **argv)
