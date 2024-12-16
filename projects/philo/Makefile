@@ -1,6 +1,6 @@
 NAME = philo
 
-SRC = philo.c utils.c init.c
+SRC = philo.c utils.c init.c monitor.c threads.c routine.c
 
 MANPATH = $(addprefix ./srcs/, $(SRC))
 

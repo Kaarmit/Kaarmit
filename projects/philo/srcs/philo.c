@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 14:37:42 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/11/26 13:12:57 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/12/10 18:33:27 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	check_args_number(char *arg)
 
 int	check_args_validty(char **argv)
 {
-	if (atoi(argv[1]) > PHILO_MAX || check_args_number(argv[1]) == 1)
+	if (atoi(argv[1]) > PHILO_MAX || check_args_number(argv[1]) == 1 || atoi(argv[1]) < 0)
 		return (write(2, "Invalid philosophers number\n", 29), 1);
 	if (ft_atoi(argv[2]) <= 0 || check_args_number(argv[2]) == 1)
 		return (write(2, "Invalid time to die\n", 21), 1);
@@ -55,7 +55,6 @@ int	main(int argc, char **argv)
 	init_program(&program, philos);
 	init_forks(forks, ft_atoi(argv[1]));
 	init_philos(philos, &program, forks, argv);
-	print_philo(50, &program);
 	thread_create(&program, forks);
 	destory_all(NULL, &program, forks);
 }

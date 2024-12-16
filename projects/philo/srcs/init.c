@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 16:18:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/11/26 13:12:44 by aarmitan         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:11:50 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	init_args(t_philo *philo, char **argv)
 	else
 		philo->nbr_of_times_to_eat = -1;
 }
+
 
 void	init_philos(t_philo *philos, t_program *program, pthread_mutex_t *forks,
 		char **argv)
@@ -72,26 +73,26 @@ void	init_program(t_program *program, t_philo *philos)
 	pthread_mutex_init(&program->meal_lock, NULL);
 }
 
-void	print_philo(int num, t_program *program)
-{
-	int	i;
+// void	print_philo(int num, t_program *program)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < num)
-	{
-		printf("PHILO ATTENDU NUMERO %d :\n\n", i + 1);
-		printf("ID PHILO : %d\n", program->philos[i].id);
-		printf("TIME TO DIE : %zu\n", program->philos[i].time_to_die);
-		printf("TIME TO EAT : %zu\n", program->philos[i].time_to_eat);
-		printf("TIME TO SLEEP : %zu\n", program->philos[i].time_to_sleep);
-		printf("NUM OF MEALS : %d\n", program->philos[i].nbr_of_times_to_eat);
-		printf("START_TIME : %zu\n", program->philos[i].start_time);
-		printf("LAST_MEAL : %zu\n", program->philos[i].last_meal);
-		printf("L_FORK : %p\n", (void *)program->philos[i].l_fork);
-		printf("R_FORK : %p\n", (void *)program->philos[i].r_fork);
-		printf("WRITE_LOCK : %p\n", (void *)program->philos[i].write_lock);
-		printf("MEAL_LOCK : %p\n", (void *)program->philos[i].meal_lock);
-		printf("DEAD_LOCK : %p\n\n", (void *)program->philos[i].dead_lock);
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < num)
+// 	{
+// 		printf("PHILO ATTENDU NUMERO %d :\n\n", i + 1);
+// 		printf("ID PHILO : %d\n", program->philos[i].id);
+// 		printf("TIME TO DIE : %zu\n", program->philos[i].time_to_die);
+// 		printf("TIME TO EAT : %zu\n", program->philos[i].time_to_eat);
+// 		printf("TIME TO SLEEP : %zu\n", program->philos[i].time_to_sleep);
+// 		printf("NUM OF MEALS : %d\n", program->philos[i].nbr_of_times_to_eat);
+// 		printf("START_TIME : %zu\n", program->philos[i].start_time);
+// 		printf("LAST_MEAL : %zu\n", program->philos[i].last_meal);
+// 		printf("L_FORK : %p\n", (void *)program->philos[i].l_fork);
+// 		printf("R_FORK : %p\n", (void *)program->philos[i].r_fork);
+// 		printf("WRITE_LOCK : %p\n", (void *)program->philos[i].write_lock);
+// 		printf("MEAL_LOCK : %p\n", (void *)program->philos[i].meal_lock);
+// 		printf("DEAD_LOCK : %p\n\n", (void *)program->philos[i].dead_lock);
+// 		i++;
+// 	}
+// }
