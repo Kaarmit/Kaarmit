@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 12:57:37 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/06/18 14:47:51 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/04/11 13:01:14 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s1, char const *set);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char 				*ft_strncpy(char *dest, const char *src, size_t n);
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_strlcpy(char *dst, const char *src, size_t siz);
