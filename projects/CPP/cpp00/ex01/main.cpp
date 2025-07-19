@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:27:27 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/18 15:51:52 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:03:54 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(void)
     {
         std::getline(std::cin, input);
         if (input == "ADD" || input == "add")
-            addContact();
+            PhoneBook.addContact();
                 
         else if (input == "SEARCH" || input == "search")
         {

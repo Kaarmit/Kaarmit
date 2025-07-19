@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:39:07 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/18 15:48:20 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:09:56 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,17 @@ public:
     Contact(void);
     ~Contact(void);
     
-    bool    Contact::setName(std::string input);
-    bool    Contact::setSurname(std::string input);
-    bool    Contact::setNickname(std::string input);
-    bool    Contact::setPhoneNumber(std::string input);
-    bool    Contact::setDarkestSecret(std::string input);
+    bool            Contact::setName(std::string input);
+    bool            Contact::setSurname(std::string input);
+    bool            Contact::setNickname(std::string input);
+    bool            Contact::setPhoneNumber(std::string input);
+    bool            Contact::setDarkestSecret(std::string input);
+    
+    std::string     Contact::getName();
+    std::string     Contact::getSurname();
+    std::string     Contact::getNickname();
+    std::string     Contact::getPhoneNumber();
+    std::string     Contact::getDarkestSecret();
     
     
 private:
@@ -39,8 +45,5 @@ private:
     std::string    _Darkest_Secret;
     std::string    _Phone_Number;
 };
-
-int is_digit(const std::string &str);
-int is_alpha(const std::string &str);
 
 #endif

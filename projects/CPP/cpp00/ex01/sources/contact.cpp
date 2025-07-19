@@ -6,11 +6,11 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:47:32 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/18 15:48:05 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:17:35 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
+#include "../includes/contact.hpp"
 
 Contact::Contact(void) {
     
@@ -82,5 +82,46 @@ bool   Contact::setDarkestSecret(std::string input){
     
     this->_Darkest_Secret = input;
     return true;
+}
+
+
+std::string    Contact::getName(){
+        
+    if(this->_Name.empty())
+        return;
+    std::cout << this->_Name << std::endl;
+    return this->_Name;      
+}
+    
+std::string    Contact::getSurname(){
+        
+    if(this->_Surname.empty())
+        return;
+    std::cout << this->_Surname << std::endl;
+    return this->_Surname;
+}
+    
+std::string    Contact::getNickname(){
+        
+    if(this->_Nickname.empty())
+        return;
+    std::cout << this->_Nickname << std::endl;
+    return this->_Nickname; 
+}
+    
+std::string    Contact::getPhoneNumber(){
+        
+    if(this->_Phone_Number.empty())
+        return;
+    std::cout << this->_Phone_Number << std::endl;
+    return this->_Phone_Number; 
+}
+
+std::string    Contact::getDarkestSecret(){
+        
+    if(this->_Name.empty())
+        return;
+    std::cout << this->_Name << std::endl;
+    return this->_Darkest_Secret; 
 }
 

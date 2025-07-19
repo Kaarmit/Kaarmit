@@ -6,7 +6,7 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/17 17:52:25 by aarmitan          #+#    #+#              #
-#    Updated: 2025/07/18 15:47:15 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/07/19 11:23:07 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = contact.cpp, phonebook.cpp
 OBJ = $(SRC:.cpp=.o)
+
+INC = -I includes/
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
