@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:47:32 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/19 13:17:35 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 14:21:02 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ bool   Contact::setDarkestSecret(std::string input){
 std::string    Contact::getName(){
         
     if(this->_Name.empty())
-        return;
+        return "N/A";
     std::cout << this->_Name << std::endl;
     return this->_Name;      
 }
@@ -96,7 +96,7 @@ std::string    Contact::getName(){
 std::string    Contact::getSurname(){
         
     if(this->_Surname.empty())
-        return;
+        return "N/A";
     std::cout << this->_Surname << std::endl;
     return this->_Surname;
 }
@@ -104,7 +104,7 @@ std::string    Contact::getSurname(){
 std::string    Contact::getNickname(){
         
     if(this->_Nickname.empty())
-        return;
+        return "N/A";
     std::cout << this->_Nickname << std::endl;
     return this->_Nickname; 
 }
@@ -112,7 +112,7 @@ std::string    Contact::getNickname(){
 std::string    Contact::getPhoneNumber(){
         
     if(this->_Phone_Number.empty())
-        return;
+        return "N/A";
     std::cout << this->_Phone_Number << std::endl;
     return this->_Phone_Number; 
 }
@@ -120,7 +120,7 @@ std::string    Contact::getPhoneNumber(){
 std::string    Contact::getDarkestSecret(){
         
     if(this->_Name.empty())
-        return;
+        return "N/A";
     std::cout << this->_Name << std::endl;
     return this->_Darkest_Secret; 
 }

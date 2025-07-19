@@ -6,18 +6,19 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/17 17:52:25 by aarmitan          #+#    #+#              #
-#    Updated: 2025/07/19 11:23:07 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/07/19 14:17:02 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = main
 CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes/
 
-SRC = contact.cpp, phonebook.cpp
+SRC = main.cpp \
+      sources/contact.cpp \
+      sources/phonebook.cpp
+
 OBJ = $(SRC:.cpp=.o)
-
-INC = -I includes/
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
@@ -34,3 +35,4 @@ fclean: clean
 re: fclean all
 
 all: $(NAME)
+
