@@ -6,11 +6,11 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/17 17:52:25 by aarmitan          #+#    #+#              #
-#    Updated: 2025/07/19 14:17:02 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/07/19 15:38:09 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = main
+NAME = Phonebook
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes/
 

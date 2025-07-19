@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 11:24:11 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/19 14:22:40 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:59:53 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,117 +43,123 @@ int PhoneBook::getCount() const {
     return this->_count;
 }
 
-bool PhoneBook::promptAndSetField(const std::string& prompt, bool (Contact::*setter)(std::string)) {
+// bool PhoneBook::promptAndSetField(const std::string& prompt, bool (Contact::*setter)(std::string)) {
     
-    std::string input;
-    bool valid = false;
-
-    do {
-        std::cout << prompt;
-        if (!std::getline(std::cin, input))
-            return false;
-        valid = (this->contacts[this->_index].*setter)(input);
-        if (!valid)
-            std::cout << "Invalid input. Please try again." << std::endl;
-    } while (!valid);
-    return true;
-}
-
-bool    PhoneBook::addContact()
-{
-    std::string input;
-   
-    if (!promptAndSetField("First Name: ", &Contact::setName)) return false;
-    if (!promptAndSetField("Last Name: ", &Contact::setSurname)) return false;   
-    std::cout << "Nickname: ";
-    if (!std::getline(std::cin, input))
-            return false;
-    if (!this->contacts[this->_index].setNickname(input))
-        return false;
-    if (!promptAndSetField("Phone Number: ", &Contact::setPhoneNumber)) return false;
-    std::cout << "Darkest secret: ";
-    if (!std::getline(std::cin, input))
-            return false;
-    if (!this->contacts[this->_index].setDarkestSecret(input))
-        return false;   
-    this->_index = (this->_index + 1) % 8;
-    if (_count < 8)
-        _count++;
-    return true;
-}
-
-// bool    PhoneBook::addContact()
-// {
-//     std::string input;      
+//     std::string input;
 //     bool valid = false;
 
 //     do {
-//         std::cout << "First Name: ";
+//         std::cout << prompt;
 //         if (!std::getline(std::cin, input))
 //             return false;
-//         valid = this->contacts[this->_index].setName(input);
+//         valid = (this->contacts[this->_index].*setter)(input);
 //         if (!valid)
-//             std::cout << "A name is composed of letters only" << std::endl;
+//             std::cout << "Invalid input. Please try again." << std::endl;
 //     } while (!valid);
-//     valid = false;
-                
-//     do  {
-//         std::cout << "Last Name: ";
-//         if (!std::getline(std::cin, input))
-//             return false;
-//         valid = this->contacts[this->_index].setSurname(input);
-//         if (!valid)
-//             std::cout << "A surname is composed of letters only" << std::endl;
-//     } while (!valid);
-//         valid = false;
-            
+//     return true;
+// }
+
+// bool    PhoneBook::addContact()
+// {
+//     std::string input;
+   
+//     if (!promptAndSetField("First Name: ", &Contact::setName)) 
+//         return false;
+//     if (!promptAndSetField("Last Name: ", &Contact::setSurname)) 
+//         return false;   
 //     std::cout << "Nickname: ";
 //     if (!std::getline(std::cin, input))
 //             return false;
 //     if (!this->contacts[this->_index].setNickname(input))
 //         return false;
-    
-//     do  {
-//         std::cout << "Phone Number: ";
-//         if (!std::getline(std::cin, input))
-//             return false;
-//         valid = this->contacts[this->_index].setPhoneNumber(input);
-//         if (!valid)
-//             std::cout << "A phone number is composed of 10 digits" << std::endl;
-//     } while (!valid);
-     
+//     if (!promptAndSetField("Phone Number: ", &Contact::setPhoneNumber)) return false;
 //     std::cout << "Darkest secret: ";
 //     if (!std::getline(std::cin, input))
 //             return false;
 //     if (!this->contacts[this->_index].setDarkestSecret(input))
-//         return false;
-            
+//         return false;   
 //     this->_index = (this->_index + 1) % 8;
 //     if (_count < 8)
 //         _count++;
 //     return true;
 // }
 
+bool    PhoneBook::addContact()
+{
+    std::string input;      
+    bool valid = false;
+
+    do {
+        std::cout << "First Name: ";
+        if (!std::getline(std::cin, input))
+            return false;
+        valid = this->contacts[this->_index].setName(input);
+        if (!valid)
+            std::cout << "A name is composed of letters only" << std::endl;
+    } while (!valid);
+    valid = false;
+                
+    do  {
+        std::cout << "Last Name: ";
+        if (!std::getline(std::cin, input))
+            return false;
+        valid = this->contacts[this->_index].setSurname(input);
+        if (!valid)
+            std::cout << "A surname is composed of letters only" << std::endl;
+    } while (!valid);
+        valid = false;
+            
+    std::cout << "Nickname: ";
+    if (!std::getline(std::cin, input))
+            return false;
+    if (!this->contacts[this->_index].setNickname(input))
+        return false;
+    
+    do  {
+        std::cout << "Phone Number: ";
+        if (!std::getline(std::cin, input))
+            return false;
+        valid = this->contacts[this->_index].setPhoneNumber(input);
+        if (!valid)
+            std::cout << "A phone number is composed of 10 digits" << std::endl;
+    } while (!valid);
+     
+    std::cout << "Darkest secret: ";
+    if (!std::getline(std::cin, input))
+            return false;
+    if (!this->contacts[this->_index].setDarkestSecret(input))
+        return false;
+            
+    this->_index = (this->_index + 1) % 8;
+    if (_count < 8)
+        _count++;
+    return true;
+}
+
 void    PhoneBook::displayAll()
 {
     system("clear");
     drawLine();
+    std::cout << std::endl;
     std::cout << "|";
     std::cout << std::right << std::setw(10) << "Index" << "|";
     std::cout << std::right << std::setw(10) << "First Name" <<  "|";
     std::cout << std::right << std::setw(10) << "Last Name" << "|";
     std::cout << std::right << std::setw(10) << "Nickname" << "|" << std::endl;
     drawLine();
-    
-    
+    std::cout << std::endl;
+        
     for (int i = 0; i < _count; i++){
         
+        std::cout << "|";
         std::cout << std::right << std::setw(10) << i << "|";
         std::cout << std::right << std::setw(10) << truncate(contacts[i].getName()) << "|";
         std::cout << std::right << std::setw(10) << truncate(contacts[i].getSurname()) << "|";
         std::cout << std::right << std::setw(10) << truncate(contacts[i].getNickname()) << "|" << std::endl;
         drawLine();
+        std::cout << std::endl;
     }
+    std::cout << "> ";
 }
 
 void    PhoneBook::displayOne(int index){

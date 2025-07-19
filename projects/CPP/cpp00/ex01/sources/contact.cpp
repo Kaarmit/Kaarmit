@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:47:32 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/19 14:21:02 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:49:13 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ Contact::~Contact(void) {
 
 int is_alpha(const std::string &str)
 {
+    if (str.empty())
+        return 0;
     for (size_t i = 0; i < str.length(); i++)
     {
         char c = str[i];
@@ -37,6 +39,8 @@ int is_alpha(const std::string &str)
 
 int is_digit(const std::string &str)
 {
+    if (str.empty())
+        return 0;
     for (size_t i = 0; i < str.length(); i++)
     {
         int d = str[i];
@@ -47,6 +51,8 @@ int is_digit(const std::string &str)
 }
 bool   Contact::setName(std::string input){
     
+    if (input.empty())
+        return false;
     if (!is_alpha(input))
         return false;
     this->_Name = input;
@@ -55,6 +61,8 @@ bool   Contact::setName(std::string input){
 
 bool    Contact::setSurname(std::string input){
     
+    if (input.empty())
+        return false;
     if (!is_alpha(input))
         return false;
     this->_Surname = input;
@@ -63,12 +71,16 @@ bool    Contact::setSurname(std::string input){
 
 bool    Contact::setNickname(std::string input){
     
+    if (input.empty())
+        return false;
     this->_Nickname = input;
     return true;
 }
 
 bool    Contact::setPhoneNumber(std::string input){
     
+    if (input.empty())
+        return false;
     if (!is_digit(input))
         return false;
     if (input.length() != 10)
@@ -80,6 +92,8 @@ bool    Contact::setPhoneNumber(std::string input){
 
 bool   Contact::setDarkestSecret(std::string input){
     
+    if (input.empty())
+        return false;
     this->_Darkest_Secret = input;
     return true;
 }
@@ -89,7 +103,6 @@ std::string    Contact::getName(){
         
     if(this->_Name.empty())
         return "N/A";
-    std::cout << this->_Name << std::endl;
     return this->_Name;      
 }
     
@@ -97,7 +110,6 @@ std::string    Contact::getSurname(){
         
     if(this->_Surname.empty())
         return "N/A";
-    std::cout << this->_Surname << std::endl;
     return this->_Surname;
 }
     
@@ -105,7 +117,6 @@ std::string    Contact::getNickname(){
         
     if(this->_Nickname.empty())
         return "N/A";
-    std::cout << this->_Nickname << std::endl;
     return this->_Nickname; 
 }
     
@@ -113,7 +124,6 @@ std::string    Contact::getPhoneNumber(){
         
     if(this->_Phone_Number.empty())
         return "N/A";
-    std::cout << this->_Phone_Number << std::endl;
     return this->_Phone_Number; 
 }
 
@@ -121,7 +131,5 @@ std::string    Contact::getDarkestSecret(){
         
     if(this->_Name.empty())
         return "N/A";
-    std::cout << this->_Name << std::endl;
     return this->_Darkest_Secret; 
 }
-

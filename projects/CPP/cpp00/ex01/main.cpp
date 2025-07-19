@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:27:27 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/19 14:23:29 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/19 16:57:05 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,39 @@ int main(void)
     
     while (true) 
     {
+        std::cout << "ADD, SEARCH or EXIT" << std::endl;
         std::cout << "> ";
         if (!std::getline(std::cin, input)){
-            if(std::cin.eof())
+            if(std::cin.eof()){
+                std::cout << "Input interrupted. Exiting";
                 return 0;
-            return 1;
+            }
+            continue;
         }
-        if (input == "ADD" || input == "add")
+        if (input == "ADD" || input == "add"){
+            if (directory.getCount() == 8)
+                std::cout << "Oldest contact will be overwritten" << std::endl;
             directory.addContact();
-                
+        }       
         else if (input == "SEARCH" || input == "search")
         {
             directory.displayAll();
             if (!std::getline(std::cin, input)){
-                if(std::cin.eof())
+                if(std::cin.eof()){
+                    std::cout << "Input interrupted. Exiting";
                     return 0;
-                return 1;
+                }
+                continue;
             }
             std::stringstream ss(input);
-            if (!(ss >> index) || !(ss.eof()))
-                return 1;
-            if (index < 0 || index >= directory.getCount())
-                return 1;
+            if (!(ss >> index) || !(ss.eof())){
+                std::cout << "Incorrect index" << std::endl;
+                continue;
+            }
+            if (index < 0 || index >= directory.getCount()){
+                std::cout << "Incorrect index" << std::endl;
+                continue;
+            }
             directory.displayOne(index);
         }
         else if (input == "EXIT" || input == "exit")
