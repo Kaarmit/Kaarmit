@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/19 11:24:11 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/20 12:34:36 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/20 14:33:14 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ bool PhoneBook::promptAndSetField(const std::string& prompt, bool (Contact::*set
         valid = (this->contacts[this->_index].*setter)(input);
         if (!valid)
         {
-            std::cout << "Invalid input. ";
+            std::cout << "Invalid input. Can't be blank ";
             std::cout << "Name/Surname are letters only. Phone number is 10 digits ";
             std::cout << "Please try again.";
             std::cout<< std::endl;
@@ -74,17 +74,12 @@ bool    PhoneBook::addContact()
         return false;
     if (!promptAndSetField("Last Name: ", &Contact::setSurname)) 
         return false;   
-    std::cout << "Nickname: ";
-    if (!std::getline(std::cin, input))
-            return false;
-    if (!this->contacts[this->_index].setNickname(input))
-        return false;
-    if (!promptAndSetField("Phone Number: ", &Contact::setPhoneNumber)) return false;
-    std::cout << "Darkest secret: ";
-    if (!std::getline(std::cin, input))
-            return false;
-    if (!this->contacts[this->_index].setDarkestSecret(input))
+    if (!promptAndSetField("Nickname: ", &Contact::setNickname)) 
         return false;   
+    if (!promptAndSetField("Phone Number: ", &Contact::setPhoneNumber)) 
+        return false;
+    if (!promptAndSetField("Darkest secret: ", &Contact::setDarkestSecret)) 
+        return false;    
     this->_index = (this->_index + 1) % 8;
     if (_count < 8)
         _count++;
