@@ -6,20 +6,20 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 11:47:32 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/19 16:49:13 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/20 12:33:17 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/contact.hpp"
 
-Contact::Contact(void) {
-    
+Contact::Contact(void) 
+{
     //std::cout << "Constructor called" << std::endl;
     return;
 }
 
-Contact::~Contact(void) {
-    
+Contact::~Contact(void)
+{
    // std::cout << "Destructor called" << std::endl;
     return;   
 }

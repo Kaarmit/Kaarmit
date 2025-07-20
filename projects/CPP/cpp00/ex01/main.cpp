@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 13:27:27 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/19 16:57:05 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/20 12:32:59 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int main(void)
             }
             continue;
         }
-        if (input == "ADD" || input == "add"){
+        if (input == "ADD" /*|| input == "add"*/){
             if (directory.getCount() == 8)
                 std::cout << "Oldest contact will be overwritten" << std::endl;
             directory.addContact();
         }       
-        else if (input == "SEARCH" || input == "search")
+        else if (input == "SEARCH" /*|| input == "search"*/)
         {
             directory.displayAll();
             if (!std::getline(std::cin, input)){
@@ -56,7 +56,8 @@ int main(void)
             }
             directory.displayOne(index);
         }
-        else if (input == "EXIT" || input == "exit")
+        else if (input == "EXIT" /*|| input == "exit"*/)
             return 0;
     }
 }
+
