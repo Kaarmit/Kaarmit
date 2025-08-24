@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:29 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 15:58:20 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/24 18:07:23 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,12 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs)
 {
   os << rhs._name << ", burecrate grade " << rhs._grade;
   return os;
+}
+
+void    Bureaucrat::executeForm(AForm const & form) const
+{
+    if (form.execute(*this))
+        std::cout << this->getName() << " executed " << form.getFormName() << std::endl;
+    else
+        std::cout << this->getName() << " failed to execute " << form.getFormName() << std::endl;
 }

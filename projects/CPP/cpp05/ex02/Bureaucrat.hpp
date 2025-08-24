@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:31 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 16:52:38 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/24 18:05:35 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ class Bureaucrat
     void        betterGrade();
     void        lesserGrade();
     void        signForm(AForm &form);
+    void        executeForm(AForm const & form) const;
     
 
   
