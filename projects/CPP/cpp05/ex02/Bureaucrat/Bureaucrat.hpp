@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:31 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 11:50:51 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:08:51 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ class Bureaucrat
     class GradeTooHighException : public std::exception 
     {
       public:
-        virtual const char* what() const throw() { return "Grade too high!"; }
+        virtual const char* what() const throw();
     };
 
     class GradeTooLowException : public std::exception 
     {
       public:
-        virtual const char* what() const throw() { return "Grade too low!"; }
+        virtual const char* what() const throw();
     };
     
     enum {MAX_GRADE = 1, MIN_GRADE = 150};
@@ -59,9 +59,9 @@ class Bureaucrat
     const std::string   _name;
     int                 _grade;
     
-  friend std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs);
     
-};
-
+  };
+  
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs);
 
 #endif

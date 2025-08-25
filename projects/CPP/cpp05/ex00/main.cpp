@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:33 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 13:57:42 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:13:28 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,19 @@ int main(void)
     {
         Bureaucrat  b1("Bob", 200);
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
+
     
     try
     {
         Bureaucrat  b2("Annie", 0);
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -55,11 +50,8 @@ int main(void)
                 
    
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -77,14 +69,12 @@ int main(void)
         b4.betterGrade(); // unchanged
         std::cout << "Bureaucrats grade is " << b4.getGrade() << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
+    
     return 0;
 }
     

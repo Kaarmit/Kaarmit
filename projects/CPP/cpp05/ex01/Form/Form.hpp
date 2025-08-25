@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 10:34:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 11:47:56 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:02:41 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ class Form
     class GradeTooHighException : public std::exception 
     {
       public:
-        virtual const char* what() const throw() { return "Grade too high!"; }
+        virtual const char* what() const throw();
     };
 
     class GradeTooLowException : public std::exception 
     {
       public:
-        virtual const char* what() const throw() { return "Grade too low!"; }
+        virtual const char* what() const throw();
     };
     
     
@@ -60,9 +60,9 @@ class Form
         const int           _gradeToSign;
         const int           _gradeToExec;
         
-    friend std::ostream& operator<<(std::ostream& os, const Form& rhs);
-    
-};
-
+        
+      };
+      
+std::ostream& operator<<(std::ostream& os, const Form& rhs);
 
 #endif

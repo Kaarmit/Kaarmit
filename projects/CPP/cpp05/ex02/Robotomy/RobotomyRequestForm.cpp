@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:54:50 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 10:24:42 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:51:37 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool RobotomyRequestForm::execute(Bureaucrat const & executor) const
     if (!isSigned())
         throw AForm::NotSignedException();
 
-    if (executor.getGrade() > REQ_EXEC)
+    if (executor.getGrade() >= REQ_EXEC)
         throw AForm::GradeTooLowException();
         
     int result = std::rand() % 2;

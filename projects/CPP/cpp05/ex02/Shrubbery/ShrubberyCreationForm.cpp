@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:11:55 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 11:26:09 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:52:05 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
     if (!isSigned())
         throw AForm::NotSignedException();
 
-    if (executor.getGrade() > REQ_EXEC)
+    if (executor.getGrade() >= REQ_EXEC)
         throw AForm::GradeTooLowException();
     std::ofstream ofs((_target + "_shrubbery").c_str());
     if (!ofs) throw std::runtime_error("cannot open file");

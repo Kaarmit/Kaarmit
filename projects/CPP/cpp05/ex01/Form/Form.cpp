@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 10:35:08 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 14:30:19 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:07:57 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Form::Form() : _name(""), _isSigned(false), _gradeToSign(1), _gradeToExec(1)
 {
-    //std::cout << "Form constructor called" << std::endl;
+
 }
 
 Form::Form(std::string const& name, int n, int n1) : _name(name), 
@@ -23,7 +23,7 @@ Form::Form(std::string const& name, int n, int n1) : _name(name),
     _gradeToSign(n),
     _gradeToExec(n1)
 {
-   // std::cout << "Form full constructor called" << std::endl;
+
 }
 
 Form::Form(const Form& rhs) : _name(rhs._name), 
@@ -31,7 +31,7 @@ Form::Form(const Form& rhs) : _name(rhs._name),
     _gradeToSign(rhs._gradeToSign),
     _gradeToExec(rhs._gradeToExec)
 {
-   //std::cout << "Form copy constructor called" << std::endl;
+
 }
 
 Form Form::operator=(const Form& rhs)
@@ -39,12 +39,11 @@ Form Form::operator=(const Form& rhs)
     if (this != &rhs)
         this->_isSigned = rhs._isSigned;
     return *this;
-    //std::cout << "Form copy assignement constructor called" << std::endl;
 }
 
 Form::~Form()
 {
-    //std::cout << "Form destructor called" << std::endl;
+
 }
 
 std::string const& Form::getFormName() const
@@ -67,6 +66,16 @@ int const& Form::gradeToExec() const
     return (this->_gradeToExec);
 }
 
+const char*Form::GradeTooHighException::what() const throw() 
+{
+    return "Grade too high!";
+}
+
+const char*Form::GradeTooLowException::what() const throw() 
+{
+    return "Grade too low!";
+}
+
 Form  Form::beSigned(Bureaucrat &b)
 {
     if (_isSigned)
@@ -86,10 +95,10 @@ Form  Form::beSigned(Bureaucrat &b)
 
 std::ostream& operator<<(std::ostream& os, const Form& rhs)
 {
-    os << rhs._name << ", form name  " << rhs._name;
-    os << rhs._name << ", form signed  " << rhs._isSigned;
-    os << rhs._name << ", form grade to sign  " << rhs._gradeToSign;
-    os << rhs._name << ", form grade to exec " << rhs._gradeToExec;
+    os << rhs.getFormName() << ", form name  " << rhs.getFormName();
+    os << rhs.getFormName() << ", form signed  " << rhs.isSigned();
+    os << rhs.getFormName() << ", form grade to sign  " << rhs.gradeToSign();
+    os << rhs.getFormName() << ", form grade to exec " << rhs.gradeToExec();
     
     return os;
 }

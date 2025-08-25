@@ -6,7 +6,7 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/22 14:04:36 by aarmitan          #+#    #+#              #
-#    Updated: 2025/08/24 09:55:55 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/08/25 13:22:57 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,23 +14,29 @@ NAME = bureaucrats
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRC = main.cpp \
-		Bureaucrat.cpp \
-		
+
+SRC_DIRS = . Bureaucrat 
+INCLUDES = $(addprefix -I, $(SRC_DIRS))
+
+
+SRC = $(foreach dir, $(SRC_DIRS), $(wildcard $(dir)/*.cpp))
 OBJ = $(SRC:.cpp=.o)
 
-$(NAME): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
-
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
 
 all: $(NAME)
+
+$(NAME): $(OBJ)
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -o $@ $^
+	@echo "Executable $(NAME) created."
+
+%.o: %.cpp
+	@$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
+
+clean:
+	@rm -f $(OBJ)
+
+fclean: clean
+	@rm -f $(NAME)
+	@echo "Executable $(NAME) removed."
+
+re: fclean all

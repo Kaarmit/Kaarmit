@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:30:49 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 11:14:26 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:54:06 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Intern::Intern()
 
 Intern::Intern(const Intern &rhs)
 {
-    *this = rhs;
+    (void)rhs;
 }
 
 Intern Intern::operator=(const Intern &rhs)

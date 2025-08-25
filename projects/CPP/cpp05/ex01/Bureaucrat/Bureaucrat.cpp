@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:29 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 14:31:23 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:01:58 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,16 @@ int Bureaucrat::getGrade() const
     return (this->_grade);
 }
 
+const char*Bureaucrat::GradeTooHighException::what() const throw() 
+{
+    return "Grade too high!";
+}
+
+const char*Bureaucrat::GradeTooLowException::what() const throw() 
+{
+    return "Grade too low!";
+}
+
 void    Bureaucrat::betterGrade()
 {
     if (this->getGrade() - 1 < 1)
@@ -90,6 +100,6 @@ void  Bureaucrat::signForm(Form &form)
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& rhs)
 {
-  os << rhs._name << ", burecrate grade " << rhs._grade;
+  os << rhs.getName()<< ", burecrate grade " << rhs.getGrade();
   return os;
 }

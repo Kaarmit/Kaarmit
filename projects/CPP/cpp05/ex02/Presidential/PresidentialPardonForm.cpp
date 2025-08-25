@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:12:57 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 11:27:36 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 12:51:06 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ bool PresidentialPardonForm::execute(Bureaucrat const & executor) const
     if (!isSigned())
         throw AForm::NotSignedException();
 
-    if (executor.getGrade() > REQ_EXEC)
+    if (executor.getGrade() >= REQ_EXEC)
         throw AForm::GradeTooLowException();
         
     std::cout << getTarget() << " Has beed pardoned by Zaphod Beeblebrox" << std::endl;

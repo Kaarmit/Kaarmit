@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 10:35:08 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 10:15:40 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:11:20 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,21 @@ int const& AForm::getGradeToSign() const
 int const& AForm::getGradeToExec() const
 {
     return (this->_gradeToExec);
+}
+
+const char*AForm::GradeTooHighException::what() const throw() 
+{
+    return "Grade too high!";
+}
+
+const char*AForm::GradeTooLowException::what() const throw() 
+{
+    return "Grade too low!";
+}
+
+const char*AForm::NotSignedException::what() const throw() 
+{
+    return "Form not signed!";
 }
 
 AForm  &AForm::beSigned(Bureaucrat &b)

@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:33 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 11:52:03 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 13:14:45 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,8 @@ int main(void)
         b1.executeForm(*f1);
         std::cout << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::NotSignedException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::GradeTooLowException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -56,15 +45,8 @@ int main(void)
         b1.executeForm(*f1);
         std::cout << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::NotSignedException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -79,19 +61,8 @@ int main(void)
         b2.executeForm(*f2);
         std::cout << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::NotSignedException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::GradeTooLowException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -104,15 +75,8 @@ int main(void)
         b2.executeForm(*f2);
         std::cout << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::NotSignedException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -127,19 +91,8 @@ int main(void)
         b3.executeForm(*f3);
         std::cout << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::NotSignedException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::GradeTooLowException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
@@ -152,15 +105,8 @@ int main(void)
         b3.executeForm(*f3);
         std::cout << std::endl;
     }
-    catch (const Bureaucrat::GradeTooHighException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch (const Bureaucrat::GradeTooLowException& e)
-    {
-        std::cerr << "Erreur : " << e.what() << std::endl;
-    }
-    catch(const AForm::NotSignedException& e)
+    
+    catch (const std::exception &e)
     {
         std::cerr << "Erreur : " << e.what() << std::endl;
     }
