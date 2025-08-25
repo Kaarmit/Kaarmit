@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:11:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 17:54:53 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/24 18:14:48 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class ShrubberyCreationForm : public AForm
 
         std::string _target;
         
-    friend std::ostream& operator<<(std::ostream& os, const AForm& rhs);
+
 };
 
 

@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 10:34:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 17:54:05 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 09:59:40 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <exception>
 #include <string>
 #include <ctime>
+#include <cstdlib>
 #include "Bureaucrat.hpp"
 
 class Bureaucrat;
@@ -46,7 +47,7 @@ class AForm
     };
     
     AForm &operator=(const AForm& rhs);
-    ~AForm();
+    virtual ~AForm();
     
     std::string const& getFormName() const;
     bool const& isSigned() const;
@@ -63,7 +64,7 @@ class AForm
     
       AForm();
       AForm(std::string const& name, int n, int n1);
-      AForm(const Form& rhs);
+      AForm(const AForm& rhs);
   
     
     private:
@@ -73,7 +74,7 @@ class AForm
         const int           _gradeToSign;
         const int           _gradeToExec;
         
-    friend std::ostream& operator<<(std::ostream& os, const Form& rhs);
+    friend std::ostream& operator<<(std::ostream& os, const AForm& rhs);
     
 };
 

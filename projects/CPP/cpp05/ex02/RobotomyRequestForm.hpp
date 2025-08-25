@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:12:14 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 17:52:24 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/24 18:14:45 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ class RobotomyRequestForm : public AForm
         
         std::string _target;
         
-    friend std::ostream& operator<<(std::ostream& os, const Form& rhs);
 };
 
 

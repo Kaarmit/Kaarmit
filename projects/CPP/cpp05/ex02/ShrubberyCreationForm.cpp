@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:11:55 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 17:57:40 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 10:16:07 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target)
 {
-    // std::cout << "Shrubbery constructor called" << std::endl;
+
 }
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& rhs) : AForm(rhs)
 {
     _target = rhs._target;
-    // std::cout << "Shrubbery copy constructor called" << std::endl;
+
 }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& rhs)
@@ -36,18 +36,9 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-    //std::cout << "Shrubbery destructor called" << std::endl;
+
 }
 
-std::ostream& operator<<(std::ostream& os, const AForm& rhs)
-{
-    os << rhs.getFormName() << " AForm level for sign : "<< rhs.getGradeToSign() << " | Level for exec : " << rhs.getGradeToExec();
-	if (rhs.isSigned())
-		os << " is Signed !";
-	else 
-		os << " not Signed yet!";
-	return os;
-}
 
 bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {

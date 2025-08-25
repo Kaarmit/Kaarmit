@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 10:35:08 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 16:51:47 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 10:15:40 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 AForm::AForm() : _name(""), _isSigned(false), _gradeToSign(1), _gradeToExec(1)
 {
-    //std::cout << "Form constructor called" << std::endl;
+
 }
 
 AForm::AForm(std::string const& name, int n, int n1) : _name(name), 
@@ -23,7 +23,7 @@ AForm::AForm(std::string const& name, int n, int n1) : _name(name),
     _gradeToSign(n),
     _gradeToExec(n1)
 {
-   // std::cout << "Form full constructor called" << std::endl;
+
 }
 
 AForm::AForm(const AForm& rhs) : _name(rhs._name), 
@@ -31,7 +31,7 @@ AForm::AForm(const AForm& rhs) : _name(rhs._name),
     _gradeToSign(rhs._gradeToSign),
     _gradeToExec(rhs._gradeToExec)
 {
-   //std::cout << "Form copy constructor called" << std::endl;
+
 }
 
 AForm &AForm::operator=(const AForm& rhs)
@@ -39,12 +39,12 @@ AForm &AForm::operator=(const AForm& rhs)
     if (this != &rhs)
         this->_isSigned = rhs._isSigned;
     return *this;
-    //std::cout << "Form copy assignement constructor called" << std::endl;
+
 }
 
 AForm::~AForm()
 {
-    //std::cout << "Form destructor called" << std::endl;
+
 }
 
 std::string const& AForm::getFormName() const

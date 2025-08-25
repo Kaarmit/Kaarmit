@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 15:13:11 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 18:00:50 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/24 18:14:33 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ class PresidentialPardonForm : public AForm
         
         std::string _target;
         
-    friend std::ostream& operator<<(std::ostream& os, const Form& rhs);
 };
 
 
