@@ -1,43 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 15:12:14 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 18:14:45 by aarmitan         ###   ########.fr       */
+/*   Created: 2025/08/24 15:11:59 by aarmitan          #+#    #+#             */
+/*   Updated: 2025/08/25 11:51:24 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM
-#define ROBOTOMYREQUESTFORM
+#ifndef SHRUBBERYCREATIONFORM_HPP
+#define SHRUBBERYCREATIONFORM_HPP
 
+#include "../AForm/AForm.hpp"
 
-#include "AForm.hpp"
 
 class Bureaucrat;
 
-class RobotomyRequestForm : public AForm
+class ShrubberyCreationForm : public AForm
 {
     public:
     
-        enum {REQ_SIGN = 72, REQ_EXEC = 45};
+        enum {REQ_SIGN = 145, REQ_EXEC = 137};
     
-        RobotomyRequestForm(std::string const);
-        RobotomyRequestForm(const RobotomyRequestForm& rhs);
-        RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
-        ~RobotomyRequestForm();
+        ShrubberyCreationForm(std::string const);
+        ShrubberyCreationForm(const ShrubberyCreationForm& rhs);
+        ShrubberyCreationForm& operator=(const ShrubberyCreationForm& rhs);
+        ~ShrubberyCreationForm();
         
-        std::string const getTarget() const;
         bool execute(Bureaucrat const & executor) const;
     
     private: 
         
+
         std::string _target;
         
-};
 
+};
 
 
 #endif

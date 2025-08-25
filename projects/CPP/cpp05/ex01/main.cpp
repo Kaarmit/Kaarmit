@@ -6,11 +6,11 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:33 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 14:29:24 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:46:57 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Bureaucrat/Bureaucrat.hpp"
 
 int main(void)
 {

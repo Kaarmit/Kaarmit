@@ -6,15 +6,15 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 10:30:56 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 10:43:05 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:54:42 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INTERN_HPP
 #define INTERN_HPP
 
-#include "AForm.hpp"
-#include "Bureaucrat.hpp"
+#include "../AForm/AForm.hpp"
+#include "../Bureaucrat/Bureaucrat.hpp"
 
 class Bureaucrat;
 

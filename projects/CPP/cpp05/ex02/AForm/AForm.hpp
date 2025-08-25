@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 10:34:59 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 09:59:40 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:50:33 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
-#include "Bureaucrat.hpp"
+#include "../Bureaucrat/Bureaucrat.hpp"
 
 class Bureaucrat;
 

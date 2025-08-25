@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 15:12:14 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/24 18:14:45 by aarmitan         ###   ########.fr       */
+/*   Created: 2025/08/24 15:13:11 by aarmitan          #+#    #+#             */
+/*   Updated: 2025/08/25 11:51:02 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ROBOTOMYREQUESTFORM
-#define ROBOTOMYREQUESTFORM
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
-
-#include "AForm.hpp"
+#include "../AForm/AForm.hpp"
 
 class Bureaucrat;
 
-class RobotomyRequestForm : public AForm
+class PresidentialPardonForm : public AForm
 {
     public:
     
-        enum {REQ_SIGN = 72, REQ_EXEC = 45};
+        enum {REQ_SIGN = 25, REQ_EXEC = 5};
     
-        RobotomyRequestForm(std::string const);
-        RobotomyRequestForm(const RobotomyRequestForm& rhs);
-        RobotomyRequestForm& operator=(const RobotomyRequestForm& rhs);
-        ~RobotomyRequestForm();
+        PresidentialPardonForm(std::string const);
+        PresidentialPardonForm(const PresidentialPardonForm& rhs);
+        PresidentialPardonForm& operator=(const PresidentialPardonForm& rhs);
+        ~PresidentialPardonForm();
         
         std::string const getTarget() const;
         bool execute(Bureaucrat const & executor) const;
@@ -37,7 +36,6 @@ class RobotomyRequestForm : public AForm
         std::string _target;
         
 };
-
 
 
 #endif

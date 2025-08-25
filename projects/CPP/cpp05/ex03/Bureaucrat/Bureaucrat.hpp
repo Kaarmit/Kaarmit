@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/22 14:04:31 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/25 09:48:25 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/25 11:54:26 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <exception>
-#include "AForm.hpp"
+#include "../AForm/AForm.hpp"
 
 class AForm;
 
