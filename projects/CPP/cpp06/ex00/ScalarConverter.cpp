@@ -272,10 +272,16 @@ void    ScalarConverter::convert(std::string input)
         int i = static_cast<int>(f);
         
         if (*end != '\0')
+        {
             std::cout << "Conversion failed" << std::endl;
+            return;
+        }
         
         if (val > FLT_MAX || val < -FLT_MAX)
+        {
             std::cout << "Conversion failed" << std::endl;
+            return;
+        }
         
         //char
         if (input == "nanf" || input == "+inff" || c < 0 || c > 255)
@@ -304,13 +310,52 @@ void    ScalarConverter::convert(std::string input)
     {
         char* end = 0;
         double val = std::strtod(input.c_str(), &end);
+        double d = static_cast<double>(val);
+        float f = static_cast<float>(d);
+        char c = static_cast<char>(f);
+        int i = static_cast<int>(f);
+        
+        if (*end != '\0')
+        {
+            std::cout << "Conversion failed" << std::endl;
+            return;
+        }
+        
+                if (val > DBL_MAX || val < -DBL_MAX)
+        {
+            std::cout << "Conversion failed" << std::endl;
+            return;
+        }
+        
+        //char
+        if (input == "nanf" || input == "+inff" || c < 0 || c > 255)
+            std::cout << "char: impossible" << std::endl;
+        if (!isprint(c))
+            std::cout << "char: non displayble" << std::endl;
+        else
+            std::cout << c << std::endl;
+        
+        //int
+        if (input == "nanf" || input == "+inff" || i < INT_MIN || i > INT_MAX)
+            std::cout << "int: impossible" << std::endl;
+        else
+            std::cout << i << std::endl;
+            
+        //float
+        
+        
+        //double
+        std::cout << d << std::endl;
     }
         break;
         
-        
- 
-        
     default:
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: impossible" << std::endl;
+        std::cout << "double: impossible" << std::endl;
+    }
         break;
     }
     
