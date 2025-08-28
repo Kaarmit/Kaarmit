@@ -6,13 +6,13 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/25 12:07:58 by aarmitan          #+#    #+#              #
-#    Updated: 2025/08/26 10:41:35 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/08/28 11:14:06 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = converter
-CXX = c++
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+C++ = c++
+C++FLAGS = -Wall -Wextra -Werror -std=c++98
 
 
 SRC_DIRS = . 

@@ -169,197 +169,421 @@ ScalarConverter::Lit    ScalarConverter::detect(const std::string& input)
         return T_INT;
     return T_INVALID;
 }
-void    ScalarConverter::convert(std::string input)
+
+static inline void printFloatFinite(float f)
 {
-    
+    // Toujours une décimale + suffixe f
+    std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+}
+
+static inline void printDoubleFinite(double d)
+{
+    // Toujours une décimale
+    std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+}
+
+void ScalarConverter::convert(std::string input)
+{
     Lit t = detect(input);
-    
+
     switch (t)
     {
     case T_PSEUDO_F:
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
-        if (input == "nanf")
-        {
+        if (input == "nanf") {
             std::cout << "float: nanf" << std::endl;
             std::cout << "double: nan" << std::endl;
-        }
-        else if (input == "+inff")
-        {
+        } else if (input == "+inff") {
             std::cout << "float: +inff" << std::endl;
             std::cout << "double: +inf" << std::endl;
-        }
-        else if (input == "-inff")
-        {
+        } else { // -inff
             std::cout << "float: -inff" << std::endl;
             std::cout << "double: -inf" << std::endl;
         }
-        
-        
         break;
-        
+
     case T_PSEUDO_D:
-    {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
-        if (input == "nan")
-        {
+        if (input == "nan") {
             std::cout << "float: nanf" << std::endl;
             std::cout << "double: nan" << std::endl;
-        }
-        else if (input == "+inf")
-        {
+        } else if (input == "+inf") {
             std::cout << "float: +inff" << std::endl;
             std::cout << "double: +inf" << std::endl;
-        }
-        else if (input == "-inf")
-        {
+        } else { // -inf
             std::cout << "float: -inff" << std::endl;
             std::cout << "double: -inf" << std::endl;
         }
-        
         break;
-    }
-    
+
     case T_CHAR:
     {
         char c = input[0];
-        
-        if(!isprint(input[0]))
-            std::cout << "char: non displayable" << std::endl;
-        else
-            std::cout << "char: " << c << std::endl;
-        std::cout << "int: " << static_cast<int>(c) << std::endl;
-        std::cout << "float: " << static_cast<float>(c) << std::endl;
-        std::cout << "double: " << static_cast<double>(c) << std::endl;
-        break;
-    }
-     
-    case T_INT:
-    {    
-        char *end = 0;
-        long i = std::strtol(input.c_str(), &end, 10);
-        char c = static_cast<char>(i);
+        unsigned char uc = static_cast<unsigned char>(c);
 
-        //char
-        if (c < 0 || c > 255)
-            std::cout << "char: impossible" << std::endl;
-        if (!isprint(c))
-            std::cout << "char: non displayble" << std::endl;
+        // char
+        if (!std::isprint(uc))
+            std::cout << "char: Non displayable" << std::endl;
         else
-            std::cout << "char: " << c << std::endl;
-        
-        //int
-        if (i < INT_MIN || i > INT_MIN)
-            std::cout << "int: impossible" << std::endl;
-        else 
-            std::cout << "int: " << static_cast<int>(i) << std::endl;
-            
-        //float
-        std::cout << "float: " << static_cast<float>(i) << std::endl;
-        
-        //double
-        std::cout << "double: " << static_cast<double>(i) << std::endl;
+            std::cout << "char: '" << c << "'" << std::endl;
+
+        // int
+        std::cout << "int: " << static_cast<int>(c) << std::endl;
+
+        // float
+        printFloatFinite(static_cast<float>(c));
+
+        // double
+        printDoubleFinite(static_cast<double>(c));
         break;
     }
-     
+
+    case T_INT:
+    {
+        errno = 0;
+        char* end = 0;
+        long l = std::strtol(input.c_str(), &end, 10);
+
+        // consommation totale + borne int
+        if (*end != '\0' || errno == ERANGE || l < INT_MIN || l > INT_MAX) {
+            std::cout << "char: impossible" << std::endl;
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: impossible" << std::endl;
+            std::cout << "double: impossible" << std::endl;
+            break;
+        }
+
+        int i = static_cast<int>(l);
+
+        // char
+        if (i < 0 || i > 127) {
+            std::cout << "char: impossible" << std::endl;
+        } else {
+            unsigned char c = static_cast<unsigned char>(i);
+            if (!std::isprint(c))
+                std::cout << "char: Non displayable" << std::endl;
+            else
+                std::cout << "char: '" << static_cast<char>(c) << "'" << std::endl;
+        }
+
+        // int
+        std::cout << "int: " << i << std::endl;
+
+        // float
+        printFloatFinite(static_cast<float>(i));
+
+        // double
+        printDoubleFinite(static_cast<double>(i));
+        break;
+    }
+
     case T_FLOAT:
     {
-        char *end = 0;
-        double val = std::strtod(input.c_str(), &end);
-        float f = static_cast<float>(val);
-        char c = static_cast<char>(f);
-        int i = static_cast<int>(f);
-        
-        if (*end != '\0')
-        {
-            std::cout << "Conversion failed" << std::endl;
-            return;
-        }
-        
-        if (val > FLT_MAX || val < -FLT_MAX)
-        {
-            std::cout << "Conversion failed" << std::endl;
-            return;
-        }
-        
-        //char
-        if (input == "nanf" || input == "+inff" || c < 0 || c > 255)
+        // enlever le 'f' final avant parsing
+        std::string core = input.substr(0, input.size() - 1);
+
+        errno = 0;
+        char* end = 0;
+        double d = std::strtod(core.c_str(), &end);
+        if (*end != '\0' || errno == ERANGE || d > FLT_MAX || d < -FLT_MAX) {
+            // overflow float ou parsing invalide
             std::cout << "char: impossible" << std::endl;
-        if (!isprint(c))
-            std::cout << "char: non displayble" << std::endl;
-        else
-            std::cout << c << std::endl;
-        
-        //int
-        if (input == "nanf" || input == "+inff" || i < INT_MIN || i > INT_MAX)
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: impossible" << std::endl;
+            std::cout << "double: impossible" << std::endl;
+            break;
+        }
+
+        float f = static_cast<float>(d);
+
+        // char
+        if (std::isnan(f) || std::isinf(f)) {
+            std::cout << "char: impossible" << std::endl;
+        } else {
+            int i = static_cast<int>(f);
+            if (i < 0 || i > 127) {
+                std::cout << "char: impossible" << std::endl;
+            } else {
+                unsigned char c = static_cast<unsigned char>(i);
+                if (!std::isprint(c))
+                    std::cout << "char: Non displayable" << std::endl;
+                else
+                    std::cout << "char: '" << static_cast<char>(c) << "'" << std::endl;
+            }
+        }
+
+        // int
+        if (std::isnan(f) || std::isinf(f) || f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
             std::cout << "int: impossible" << std::endl;
         else
-            std::cout << i << std::endl;
-        
-        //float
-        std::cout << f << std::endl;
-        
-        //double 
-        std::cout << static_cast<double>(f) << std::endl;
-    
+            std::cout << "int: " << static_cast<int>(f) << std::endl;
+
+        // float
+        printFloatFinite(f);
+
+        // double
+        printDoubleFinite(static_cast<double>(f));
         break;
     }
-        
+
     case T_DOUBLE:
     {
+        errno = 0;
         char* end = 0;
-        double val = std::strtod(input.c_str(), &end);
-        double d = static_cast<double>(val);
-        float f = static_cast<float>(d);
-        char c = static_cast<char>(f);
-        int i = static_cast<int>(f);
-        
-        if (*end != '\0')
-        {
-            std::cout << "Conversion failed" << std::endl;
-            return;
-        }
-        
-                if (val > DBL_MAX || val < -DBL_MAX)
-        {
-            std::cout << "Conversion failed" << std::endl;
-            return;
-        }
-        
-        //char
-        if (input == "nanf" || input == "+inff" || c < 0 || c > 255)
+        double d = std::strtod(input.c_str(), &end);
+        if (*end != '\0' || errno == ERANGE || d > DBL_MAX || d < -DBL_MAX) {
             std::cout << "char: impossible" << std::endl;
-        if (!isprint(c))
-            std::cout << "char: non displayble" << std::endl;
-        else
-            std::cout << c << std::endl;
-        
-        //int
-        if (input == "nanf" || input == "+inff" || i < INT_MIN || i > INT_MAX)
+            std::cout << "int: impossible" << std::endl;
+            std::cout << "float: impossible" << std::endl;
+            std::cout << "double: impossible" << std::endl;
+            break;
+        }
+
+        // char
+        if (std::isnan(d) || std::isinf(d)) {
+            std::cout << "char: impossible" << std::endl;
+        } else {
+            // clamp logique pour test d'affichabilité
+            long l = static_cast<long>(d);
+            if (l < 0 || l > 127) {
+                std::cout << "char: impossible" << std::endl;
+            } else {
+                unsigned char c = static_cast<unsigned char>(l);
+                if (!std::isprint(c))
+                    std::cout << "char: Non displayable" << std::endl;
+                else
+                    std::cout << "char: '" << static_cast<char>(c) << "'" << std::endl;
+            }
+        }
+
+        // int
+        if (std::isnan(d) || std::isinf(d) || d < static_cast<double>(INT_MIN) || d > static_cast<double>(INT_MAX))
             std::cout << "int: impossible" << std::endl;
         else
-            std::cout << i << std::endl;
-            
-        //float
-        
-        
-        //double
-        std::cout << d << std::endl;
-    }
+            std::cout << "int: " << static_cast<int>(d) << std::endl;
+
+        // float (double -> float MANQUANT, ajouté)
+        if (std::isnan(d)) {
+            std::cout << "float: nanf" << std::endl;
+        } else if (std::isinf(d)) {
+            std::cout << "float: " << (d > 0 ? "+inff" : "-inff") << std::endl;
+        } else if (d > static_cast<double>(FLT_MAX)) {
+            std::cout << "float: +inff" << std::endl;
+        } else if (d < -static_cast<double>(FLT_MAX)) {
+            std::cout << "float: -inff" << std::endl;
+        } else {
+            float f = static_cast<float>(d);
+            printFloatFinite(f);
+        }
+
+        // double
+        printDoubleFinite(d);
         break;
-        
+    }
+
     default:
-    {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
         std::cout << "float: impossible" << std::endl;
         std::cout << "double: impossible" << std::endl;
-    }
         break;
     }
-    
 }
+
+
+// void    ScalarConverter::convert(std::string input)
+// {
+    
+//     Lit t = detect(input);
+    
+//     switch (t)
+//     {
+//     case T_PSEUDO_F:
+//         std::cout << "char: impossible" << std::endl;
+//         std::cout << "int: impossible" << std::endl;
+//         if (input == "nanf")
+//         {
+//             std::cout << "float: nanf" << std::endl;
+//             std::cout << "double: nan" << std::endl;
+//         }
+//         else if (input == "+inff")
+//         {
+//             std::cout << "float: +inff" << std::endl;
+//             std::cout << "double: +inf" << std::endl;
+//         }
+//         else if (input == "-inff")
+//         {
+//             std::cout << "float: -inff" << std::endl;
+//             std::cout << "double: -inf" << std::endl;
+//         }
+        
+        
+//         break;
+        
+//     case T_PSEUDO_D:
+//     {
+//         std::cout << "char: impossible" << std::endl;
+//         std::cout << "int: impossible" << std::endl;
+//         if (input == "nan")
+//         {
+//             std::cout << "float: nanf" << std::endl;
+//             std::cout << "double: nan" << std::endl;
+//         }
+//         else if (input == "+inf")
+//         {
+//             std::cout << "float: +inff" << std::endl;
+//             std::cout << "double: +inf" << std::endl;
+//         }
+//         else if (input == "-inf")
+//         {
+//             std::cout << "float: -inff" << std::endl;
+//             std::cout << "double: -inf" << std::endl;
+//         }
+        
+//         break;
+//     }
+    
+//     case T_CHAR:
+//     {
+//         char c = input[0];
+        
+//         if(!isprint(input[0]))
+//             std::cout << "char: non displayable" << std::endl;
+//         else
+//             std::cout << "char: " << c << std::endl;
+//         std::cout << "int: " << static_cast<int>(c) << std::endl;
+//         std::cout << "float: " << static_cast<float>(c) << std::endl;
+//         std::cout << "double: " << static_cast<double>(c) << std::endl;
+//         break;
+//     }
+     
+//     case T_INT:
+//     {    
+//         char *end = 0;
+//         long i = std::strtol(input.c_str(), &end, 10);
+//         char c = static_cast<char>(i);
+
+//         //char
+//         if (c < 0 || c > 255)
+//             std::cout << "char: impossible" << std::endl;
+//         if (!isprint(c))
+//             std::cout << "char: non displayble" << std::endl;
+//         else
+//             std::cout << "char: " << c << std::endl;
+        
+//         //int
+//         if (i < INT_MIN || i > INT_MIN)
+//             std::cout << "int: impossible" << std::endl;
+//         else 
+//             std::cout << "int: " << static_cast<int>(i) << std::endl;
+            
+//         //float
+//         std::cout << "float: " << static_cast<float>(i) << std::endl;
+        
+//         //double
+//         std::cout << "double: " << static_cast<double>(i) << std::endl;
+//         break;
+//     }
+     
+//     case T_FLOAT:
+//     {
+//         char *end = 0;
+//         double val = std::strtod(input.c_str(), &end);
+//         float f = static_cast<float>(val);
+//         char c = static_cast<char>(f);
+//         int i = static_cast<int>(f);
+        
+//         if (*end != '\0')
+//         {
+//             std::cout << "Conversion failed" << std::endl;
+//             return;
+//         }
+        
+//         if (val > FLT_MAX || val < -FLT_MAX)
+//         {
+//             std::cout << "Conversion failed" << std::endl;
+//             return;
+//         }
+        
+//         //char
+//         if (input == "nanf" || input == "+inff" || c < 0 || c > 255)
+//             std::cout << "char: impossible" << std::endl;
+//         if (!isprint(c))
+//             std::cout << "char: non displayble" << std::endl;
+//         else
+//             std::cout << c << std::endl;
+        
+//         //int
+//         if (input == "nanf" || input == "+inff" || i < INT_MIN || i > INT_MAX)
+//             std::cout << "int: impossible" << std::endl;
+//         else
+//             std::cout << i << std::endl;
+        
+//         //float
+//         std::cout << f << std::endl;
+        
+//         //double 
+//         std::cout << static_cast<double>(f) << std::endl;
+    
+//         break;
+//     }
+        
+//     case T_DOUBLE:
+//     {
+//         char* end = 0;
+//         double val = std::strtod(input.c_str(), &end);
+//         double d = static_cast<double>(val);
+//         float f = static_cast<float>(d);
+//         char c = static_cast<char>(f);
+//         int i = static_cast<int>(f);
+        
+//         if (*end != '\0')
+//         {
+//             std::cout << "Conversion failed" << std::endl;
+//             return;
+//         }
+        
+//                 if (val > DBL_MAX || val < -DBL_MAX)
+//         {
+//             std::cout << "Conversion failed" << std::endl;
+//             return;
+//         }
+        
+//         //char
+//         if (input == "nanf" || input == "+inff" || c < 0 || c > 255)
+//             std::cout << "char: impossible" << std::endl;
+//         if (!isprint(c))
+//             std::cout << "char: non displayble" << std::endl;
+//         else
+//             std::cout << c << std::endl;
+        
+//         //int
+//         if (input == "nanf" || input == "+inff" || i < INT_MIN || i > INT_MAX)
+//             std::cout << "int: impossible" << std::endl;
+//         else
+//             std::cout << i << std::endl;
+            
+//         //float
+        
+        
+//         //double
+//         std::cout << d << std::endl;
+//     }
+//         break;
+        
+//     default:
+//     {
+//         std::cout << "char: impossible" << std::endl;
+//         std::cout << "int: impossible" << std::endl;
+//         std::cout << "float: impossible" << std::endl;
+//         std::cout << "double: impossible" << std::endl;
+//     }
+//         break;
+//     }
+    
+// }
 
 /*
    std::stringstream abc("");

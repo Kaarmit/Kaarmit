@@ -24,6 +24,7 @@
 #include <sstream>
 #include <iomanip>
 #include <cfloat>
+#include <cmath>
 
 class ScalarConverter
 
