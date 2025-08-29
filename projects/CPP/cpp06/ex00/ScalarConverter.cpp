@@ -124,7 +124,7 @@ bool ScalarConverter::isDoubleLiteral(const std::string& input)
         }
         return false;
     }
-    return (dot == 1 && digits >= 1);
+    return (digits >= 1);
 }
 
 #include <cctype>
@@ -279,61 +279,67 @@ void ScalarConverter::convert(std::string input)
         break;
     }
 
-    case T_FLOAT:
-    {
-        // enlever le 'f' final avant parsing
-        std::string core = input.substr(0, input.size() - 1);
+case T_FLOAT:
+{
+    std::string core = input.substr(0, input.size() - 1);
 
-        errno = 0;
-        char* end = 0;
-        double d = std::strtod(core.c_str(), &end);
-        if (*end != '\0' || errno == ERANGE || d > FLT_MAX || d < -FLT_MAX) {
-            // overflow float ou parsing invalide
+    errno = 0;
+    char* end = 0;
+    double d = std::strtod(core.c_str(), &end);
+    if (*end != '\0' || errno == ERANGE) 
+    {
             std::cout << "char: impossible" << std::endl;
             std::cout << "int: impossible" << std::endl;
             std::cout << "float: impossible" << std::endl;
             std::cout << "double: impossible" << std::endl;
-            break;
-        }
-
-        float f = static_cast<float>(d);
-
-        // char
-        if (std::isnan(f) || std::isinf(f)) {
-            std::cout << "char: impossible" << std::endl;
-        } else {
-            int i = static_cast<int>(f);
-            if (i < 0 || i > 127) {
-                std::cout << "char: impossible" << std::endl;
-            } else {
-                unsigned char c = static_cast<unsigned char>(i);
-                if (!std::isprint(c))
-                    std::cout << "char: Non displayable" << std::endl;
-                else
-                    std::cout << "char: '" << static_cast<char>(c) << "'" << std::endl;
-            }
-        }
-
-        // int
-        if (std::isnan(f) || std::isinf(f) || f < static_cast<float>(INT_MIN) || f > static_cast<float>(INT_MAX))
-            std::cout << "int: impossible" << std::endl;
-        else
-            std::cout << "int: " << static_cast<int>(f) << std::endl;
-
-        // float
-        printFloatFinite(f);
-
-        // double
-        printDoubleFinite(static_cast<double>(f));
         break;
     }
+
+    // char
+    if (std::isnan(d) || std::isinf(d) || d < 0.0 || d > 127.0) 
+    {
+        std::cout << "char: impossible\n";
+    } else 
+    {
+        char c = static_cast<char>(static_cast<int>(d));
+        if (!std::isprint(static_cast<unsigned char>(c)))
+            std::cout << "char: Non displayable\n";
+        else
+            std::cout << "char: '" << c << "'\n";
+    }
+
+    // int
+    if (std::isnan(d) || std::isinf(d) || d < static_cast<double>(INT_MIN) || d > static_cast<double>(INT_MAX))
+        std::cout << "int: impossible\n";
+    else
+        std::cout << "int: " << static_cast<int>(d) << "\n";
+
+    // float
+    if (std::isnan(d)) {
+        std::cout << "float: nanf\n";
+    } else if (std::isinf(d)) {
+        std::cout << "float: " << (d > 0.0 ? "+inff\n" : "-inff\n");
+    } else if (d > static_cast<double>(std::numeric_limits<float>::max())) {
+        std::cout << "float: +inff\n";
+    } else if (d < -static_cast<double>(std::numeric_limits<float>::max())) {
+        std::cout << "float: -inff\n";
+    } else {
+        float f = static_cast<float>(d);
+        printFloatFinite(f);
+    }
+
+    // double
+    printDoubleFinite(d);
+    break;
+}
 
     case T_DOUBLE:
     {
         errno = 0;
         char* end = 0;
         double d = std::strtod(input.c_str(), &end);
-        if (*end != '\0' || errno == ERANGE || d > DBL_MAX || d < -DBL_MAX) {
+        if (*end != '\0' || errno == ERANGE || d > std::numeric_limits<double>::max() || d < -std::numeric_limits<double>::max()) 
+        {
             std::cout << "char: impossible" << std::endl;
             std::cout << "int: impossible" << std::endl;
             std::cout << "float: impossible" << std::endl;
@@ -344,8 +350,9 @@ void ScalarConverter::convert(std::string input)
         // char
         if (std::isnan(d) || std::isinf(d)) {
             std::cout << "char: impossible" << std::endl;
-        } else {
-            // clamp logique pour test d'affichabilité
+        } 
+        else 
+        {
             long l = static_cast<long>(d);
             if (l < 0 || l > 127) {
                 std::cout << "char: impossible" << std::endl;
