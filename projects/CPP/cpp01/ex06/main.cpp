@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 14:15:19 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/22 14:55:01 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:33:44 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@ int main(int argc, char **argv)
     Harl    harl;
     int i = -1;
     
-    for (int j = 0; j < 4; j++)
-    {
-        if (argv[1] == levels[j])
-        {
-            i = j + 1;
-            break;
-        }
-    }
-    
     if (argc == 2)
     {
+        for (int j = 0; j < 4; j++)
+        {
+            if (argv[1] == levels[j])
+            {
+                i = j + 1;
+                break;
+            }
+        }
         switch (i)
         {
             case 1 :

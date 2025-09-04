@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 18:41:07 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/22 11:04:25 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/23 14:00:07 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int main(int argc, char **argv)
         s1 = argv[2];
         s2 = argv[3];
         
+        if (s1.empty())
+            return 1;
         std::ifstream in(infile.c_str());
         if (!in)
         {
@@ -51,9 +53,8 @@ int main(int argc, char **argv)
         } 
     }
     else
-    {
         std::cout << "wrong number of arguments" << std::endl;
-    }      
+    return 0;
 }
 
 

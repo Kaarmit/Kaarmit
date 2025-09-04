@@ -6,7 +6,7 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/30 14:51:15 by aarmitan          #+#    #+#              #
-#    Updated: 2025/07/31 13:06:01 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/08/04 11:36:38 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,6 @@ SRC = main.cpp \
 		Animal.cpp \
 		Cat.cpp \
 		Dog.cpp \
-		WrongAnimal.cpp \
-		WrongCat.cpp \
 		Brain.cpp \
 		
 		

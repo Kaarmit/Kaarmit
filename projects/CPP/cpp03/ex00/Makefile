@@ -6,11 +6,11 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/28 13:07:17 by aarmitan          #+#    #+#              #
-#    Updated: 2025/07/28 15:01:59 by aarmitan         ###   ########.fr        #
+#    Updated: 2025/07/30 12:01:50 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = attacc
+NAME = clapTrap
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -Iincludes/
 

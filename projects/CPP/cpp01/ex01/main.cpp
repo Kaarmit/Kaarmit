@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:57:49 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/21 14:15:40 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:16:33 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(void)
 {
     int N = 5;
     Zombie* ptr;
-    ptr = zombieHorde(N, "Bobby");
+    ptr = _zombieHorde(N, "Bobby");
     for(int i = 0; i < N; i++)
         ptr->announce();
     delete[] ptr;

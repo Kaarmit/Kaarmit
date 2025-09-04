@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:58:18 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/21 14:10:48 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:16:20 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ private:
     std::string    _name;
 };
 
-    Zombie* zombieHorde( int N, std::string name );
+    Zombie* _zombieHorde( int N, std::string name );
 
 #endif
 

@@ -6,13 +6,13 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/21 12:59:54 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/21 14:14:43 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:16:23 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie* zombieHorde(int N, std::string name)
+Zombie* _zombieHorde(int N, std::string name)
 {
     Zombie* ptr = new Zombie[N];
     

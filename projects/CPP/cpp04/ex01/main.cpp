@@ -6,15 +6,13 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:51:27 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/31 13:22:12 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/08/04 11:36:11 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 
 #include "Animal.hpp"
 #include "Dog.hpp"

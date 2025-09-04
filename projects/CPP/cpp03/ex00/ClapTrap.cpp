@@ -6,13 +6,13 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 13:07:34 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/28 15:08:12 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/30 15:52:03 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0)
+ClapTrap::ClapTrap() : _name("Default ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0)
 {
     std::cout << "Default ClapTrap constructor called" << std::endl;
 }
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(const ClapTrap& rhs)  : _name(rhs._name), _hitPoints(rhs._hit
     std::cout << "ClaTrap copy constructor called" << std::endl;
 }
 
-ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
+ClapTrap& ClapTrap::operator=(const ClapTrap& rhs) 
 {
     std::cout << "Copy assignement operator called" << std::endl;
      if (this != &rhs)
@@ -66,7 +66,7 @@ void ClapTrap::attack(const std::string& target)
 void ClapTrap::takeDamage(unsigned int amount)
 {
     this->_hitPoints -= amount;
-    std::cout << "ClapTrap lost " << amount << " HP. " << this->_hitPoints << " HP remaining." << std::endl;
+    std::cout << "ClapTrap " << this->_name << " lost " << amount << " HP. " << this->_hitPoints << " HP remaining." << std::endl;
     return;
 }
 
@@ -84,7 +84,7 @@ void ClapTrap::beRepaired(unsigned int amount)
     }
     this->_hitPoints += amount;
     this->_energyPoints -= 1;
-    std::cout << "ClapTrap repaired recovered " << amount << " HP. " << this->_hitPoints << " HP remaining.";
+    std::cout << "ClapTrap recovered " << amount << " HP. " << this->_hitPoints << " HP remaining.";
     std::cout << " Cost of healing is 1 energy point. " <<  this->_energyPoints << " energy remaing" << std::endl;
     return;
 }

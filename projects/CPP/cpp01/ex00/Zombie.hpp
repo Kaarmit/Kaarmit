@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/20 12:58:18 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/21 12:52:39 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:15:02 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ private:
     std::string    _name;
 };
 
-    void randomChump(std::string name);
-    Zombie *newZombie(std::string name);
+    void _randomChump(std::string name);
+    Zombie *_newZombie(std::string name);
 
 #endif
 
