@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 15:01:33 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/08/04 12:22:21 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/09/17 11:22:01 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Animal Animal::operator=(const Animal& rhs)
 
 Animal::~Animal()
 {
+    
     std::cout << "Animal destructor called" << std::endl;
 }
 

@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/30 14:51:27 by aarmitan          #+#    #+#             */
-/*   Updated: 2025/07/31 11:25:40 by aarmitan         ###   ########.fr       */
+/*   Updated: 2025/09/17 11:30:19 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@ std::cout << "Wrong Animal noise:";
 i1->makeSound(); 
 std::cout << "Wrong Cat noise:";
 meta1->makeSound();
+
+delete meta;
+delete i;
+delete j;
+delete meta1;
+delete i1;
 
 return 0;
 }
