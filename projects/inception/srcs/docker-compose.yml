@@ -1,0 +1,52 @@
+services:
+  mariadb:
+    build: ./requirements/mariadb
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./secrets/db_password:/run/secrets/db_password:ro
+      - ./secrets/db_root_password:/run/secrets/db_root_password:ro
+    networks:
+      - inception
+
+  wordpress:
+    build: ./requirements/wordpress
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wordpress_data:/var/www/html
+      - ./secrets/db_password:/run/secrets/db_password:ro
+      - ./secrets/wp_admin_password:/run/secrets/wp_admin_password:ro
+      - ./secrets/wp_user_password:/run/secrets/wp_user_password:ro
+    networks:
+      - inception
+
+  nginx:
+    build: ./requirements/nginx
+    restart: unless-stopped
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html:ro
+    networks:
+      - inception
+    ports:
+      - "443:443"
+
+volumes:
+  mariadb_data:
+    driver: local
+
+  wordpress_data:
+    driver: local
+
+networks:
+  inception:
+    driver: bridge
