@@ -1,18 +1,22 @@
 services:
   mariadb:
     build: ./requirements/mariadb
+    image: mariadb
     restart: unless-stopped
     env_file:
       - .env
     volumes:
       - mariadb_data:/var/lib/mysql
-      - ./secrets/db_password:/run/secrets/db_password:ro
-      - ./secrets/db_root_password:/run/secrets/db_root_password:ro
+      - ../secrets/mysql_database:/run/secrets/mysql_database:ro
+      - ../secrets/mysql_user:/run/secrets/mysql_user:ro
+      - ../secrets/db_password:/run/secrets/db_password:ro
+      - ../secrets/db_root_password:/run/secrets/db_root_password:ro
     networks:
       - inception
 
   wordpress:
     build: ./requirements/wordpress
+    image: wordpress
     restart: unless-stopped
     env_file:
       - .env
@@ -20,14 +24,21 @@ services:
       - mariadb
     volumes:
       - wordpress_data:/var/www/html
-      - ./secrets/db_password:/run/secrets/db_password:ro
-      - ./secrets/wp_admin_password:/run/secrets/wp_admin_password:ro
-      - ./secrets/wp_user_password:/run/secrets/wp_user_password:ro
+      - ../secrets/mysql_database:/run/secrets/mysql_database:ro
+      - ../secrets/mysql_user:/run/secrets/mysql_user:ro
+      - ../secrets/db_password:/run/secrets/db_password:ro
+      - ../secrets/wp_admin_user:/run/secrets/wp_admin_user:ro
+      - ../secrets/wp_admin_email:/run/secrets/wp_admin_email:ro
+      - ../secrets/wp_admin_password:/run/secrets/wp_admin_password:ro
+      - ../secrets/wp_user:/run/secrets/wp_user:ro
+      - ../secrets/wp_user_email:/run/secrets/wp_user_email:ro
+      - ../secrets/wp_user_password:/run/secrets/wp_user_password:ro
     networks:
       - inception
 
   nginx:
     build: ./requirements/nginx
+    image: nginx
     restart: unless-stopped
     env_file:
       - .env
@@ -42,10 +53,20 @@ services:
 
 volumes:
   mariadb_data:
+    name: mariadb_data
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/aarmitan/data/mariadb
 
   wordpress_data:
+    name: wordpress_data
     driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/aarmitan/data/wordpress
 
 networks:
   inception:

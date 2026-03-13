@@ -1,14 +1,12 @@
-FROM nginx:alpine
+FROM alpine:3.19
 
-RUN apk add --no-cache openssl
+RUN apk add --no-cache nginx openssl \
+ && mkdir -p /etc/nginx/conf.d /etc/nginx/ssl
 
-RUN rm -f /etc/nginx/conf.d/default.conf
-
-COPY conf/default.conf.template /etc/nginx/templates/default.conf.template
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY tools/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-RUN chmod +x /usr/local/bin/entrypoint.sh \
- && mkdir -p /etc/nginx/ssl
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
 EXPOSE 443
 

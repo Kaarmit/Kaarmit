@@ -31,9 +31,8 @@ Each service contains:
 ## Environment Setup
 
 1. Clone the repository.
-2. Create srcs/.env.
-3. Create required secret files in secrets/.
-4. Ensure the directory exists:
+2. Create required secret files in secrets/.
+3. Ensure the directory exists:
 
 /home/<aarmitan>/data
 
@@ -82,20 +81,22 @@ docker compose build --no-cache
 
 ## Data Persistence
 
-Two named volumes:
+Project data is stored in two Docker named volumes:
 
-- Database volume
+- MariaDB data volume
 - WordPress files volume
 
-Both are mapped to:
+These volumes are bound to directories under:
 
-/home/<aarmitan>/data
+/home/aarmitan/data
 
-Data persists across:
-- Container restarts
-- Image rebuilds
+This ensures persistence of data even when:
+- containers are restarted
+- containers are removed and recreated
+- images are rebuilt
 
----
+Invariant:
+As long as the volumes are not deleted, the database content and WordPress files remain intact.
 
 ## Networking
 
