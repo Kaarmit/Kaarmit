@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:45:51 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/16 15:56:02 by aarmitan         ###   ########.fr       */
+/*   Updated: 2026/06/17 12:54:48 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,72 @@ static void	init_vars(t_game *game)
 	game->map_size.y = get_height(game->map);
 	game->nb_c = 0;
 	game->moves = 0;
+	game->key_w = 0;
+    game->key_a = 0;
+    game->key_s = 0;
+    game->key_d = 0;
+    game->last_move = 0;
+	game->last_blink = 0;
+    game->blink_state = 1;
 }
-
-int	key_check(int keycode, t_game *game)
+int key_press(int keycode, t_game *game)
 {
-	int	x;
-	int	y;
-
-	x = game->p_pos.x;
-	y = game->p_pos.y;
 	if (keycode == XK_Escape)
 		end_game("", game, event_end, NULL);
-	else if (keycode == XK_a && !is_wall(game, y, x - 1))
+	if(keycode == XK_a)
+		game->key_a = 1;
+	if(keycode == XK_d)
+		game->key_d = 1;
+	if(keycode == XK_w)
+		game->key_w = 1;
+	if(keycode == XK_s)
+		game->key_s = 1;
+	return 0;
+}
+int	key_release(int keycode, t_game *game)
+{
+	if(keycode == XK_a)
+		game->key_a = 0;
+	if(keycode == XK_d)
+		game->key_d = 0;
+	if(keycode == XK_w)
+		game->key_w = 0;
+	if(keycode == XK_s)
+		game->key_s = 0;
+	return 0;
+}
+static long get_time_ms(void)
+{
+	struct timeval tv;
+	
+	gettimeofday(&tv, NULL);
+	return(tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+int game_loop(t_game *game)
+{
+	long now;
+	int x;
+	int y;
+	
+	now = get_time_ms();
+	animate_collectibles(game, now);
+	if(now - game->last_move < 150)
+		return (0);
+	x = game->p_pos.x;
+	y = game->p_pos.y;
+	if(game->key_a && !is_wall(game, y, x -1))
 		move_to(x - 1, y, game->pac_img_l, game);
-	else if (keycode == XK_d && !is_wall(game, y, x + 1))
-		move_to(x + 1, y, game->pac_img_r, game);
-	else if (keycode == XK_w && !is_wall(game, y - 1, x))
-		move_to(x, y - 1, game->pac_img_u, game);
-	else if (keycode == XK_s && !is_wall(game, y + 1, x))
-		move_to(x, y + 1, game->pac_img_d, game);
-	return (0);
+    else if (game->key_d && !is_wall(game, y, x + 1))
+        move_to(x + 1, y, game->pac_img_r, game);
+    else if (game->key_w && !is_wall(game, y - 1, x))
+        move_to(x, y - 1, game->pac_img_u, game);
+    else if (game->key_s && !is_wall(game, y + 1, x))
+        move_to(x, y + 1, game->pac_img_d, game);
+    else
+        return (0);
+    game->last_move = now;
+    return (0);
 }
 
 void	init_game(t_game *game, char *map_file)
@@ -62,7 +108,9 @@ void	init_game(t_game *game, char *map_file)
 	if (!game->mlx_win)
 		end_game(ERRWIN, game, map_error, game->mlx_ptr);
 	render_map(game);
-	mlx_hook(game->mlx_win, KEY_RELEASED, KEY_MASK, key_check, game);
+    mlx_hook(game->mlx_win, KEY_PRESSED, KEY_PRESS_MASK, key_press, game);
+    mlx_hook(game->mlx_win, KEY_RELEASED, KEY_MASK, key_release, game);
+    mlx_loop_hook(game->mlx_ptr, game_loop, game);
 	mlx_hook(game->mlx_win, ON_DESTROY, EXIT_MASK, exit_event, game);
 	mlx_string_put(game->mlx_ptr, game->mlx_win, 5, 10, 0xff0000, "Move: 0");
 	mlx_loop(game->mlx_ptr);

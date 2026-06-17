@@ -1,0 +1,120 @@
+/* =========================
+   Base + Variables
+   ========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --paw-cursor: url('/paw/cursor/beige.png') 8 8;
+  --container-max: 1200px;
+  --gap: 1rem;
+  --font-base: clamp(0.95rem, 1.2vw + 0.2rem, 1.125rem);
+  --bp-sm: 640px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+}
+
+html {
+  font-size: 16px;
+}
+
+html,
+body,
+#root,
+#root * {
+  cursor: var(--paw-cursor), auto !important;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  height: 100%;
+  font-size: var(--font-base);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+button,
+a,
+input,
+select,
+textarea,
+[role='button'] {
+  cursor: var(--paw-cursor), pointer !important;
+}
+
+#root {
+  height: 100vh;
+  width: 100%;
+}
+
+/* =========================
+   Legal Pages
+   ========================= */
+
+.legal-page {
+  min-height: 100vh;
+  padding: 48px 20px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, #fff7fb 0%, #f7f0ff 100%);
+  color: #2f2430;
+}
+
+.legal-card {
+  width: 100%;
+  max-width: 860px;
+  padding: 40px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 45px rgba(80, 45, 85, 0.14);
+}
+
+.legal-card h1 {
+  margin-bottom: 24px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.legal-card h2 {
+  margin-top: 28px;
+  margin-bottom: 10px;
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  line-height: 1.25;
+}
+
+.legal-card p {
+  margin-bottom: 14px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.legal-card a {
+  display: inline-block;
+  margin-top: 24px;
+  color: #8f4fc4;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.legal-card a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .legal-page {
+    padding: 28px 14px;
+  }
+
+  .legal-card {
+    padding: 26px 20px;
+    border-radius: 22px;
+  }
+}

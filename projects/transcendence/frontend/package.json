@@ -1,0 +1,37 @@
+{
+  "name": "nekotchi-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@react-three/drei": "^9.92.0",
+    "@react-three/fiber": "^8.15.0",
+    "axios": "^1.13.5",
+    "framer-motion": "^12.38.0",
+    "ogl": "^1.0.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.20.0",
+    "socket.io-client": "^4.8.3",
+    "styled-components": "^6.4.1",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.3.0",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.2.17",
+    "@types/styled-components": "^5.1.26",
+    "@types/three": "^0.160.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.2.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}

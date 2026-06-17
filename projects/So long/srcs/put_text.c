@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:16:52 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/09/12 11:51:51 by aarmitan         ###   ########.fr       */
+/*   Updated: 2026/06/17 12:24:56 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	put_text(t_game *game)
 	put_that_img(game->wall_img, 0, 0, game);
 	put_that_img(game->wall_img, 1, 0, game);
 	mlx_string_put(game->mlx_ptr, game->mlx_win, 5, 10, 0xff0000, text);
-	ft_printf("moves : %d\n", game->moves);
 	free(text);
 	free(number);
 }

@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:36:10 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/13 14:26:08 by aarmitan         ###   ########.fr       */
+/*   Updated: 2026/06/17 13:00:53 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define KEY_RELEASED 3
 # define EXIT_MASK 0
 # define KEY_MASK 2
+# define KEY_PRESS_MASK 1
 # define ERRPLAYER "This is a single player game"
 # define ERRBER "Wrong file type"
 # define ERRELEM "Wrong number of elements (Exit / Collectibles)"
@@ -49,6 +50,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 // STRUCTURES
 
@@ -62,8 +64,6 @@ typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
-	int			x_p;
-	int			y_p;
 	void		*wall_img;
 	void		*collec_img;
 	void		*pac_img_u;
@@ -72,12 +72,21 @@ typedef struct s_game
 	void		*pac_img_r;
 	void		*exit_img;
 	void		*bg_img;
-	t_vector	img_size;
 	char		**map;
+	t_vector	img_size;
 	t_vector	map_size;
 	t_vector	p_pos;
+	int			x_p;
+	int			y_p;
 	int			nb_c;
 	int			moves;
+	int			key_w;
+	int 		key_a;
+	int			key_s;
+	int 		key_d;
+	int         blink_state;
+	long 		last_blink;
+	long 		last_move;
 }				t_game;
 
 typedef struct s_game_map
@@ -108,6 +117,9 @@ int				exit_event(t_game *game);
 
 // init game
 void			init_game(t_game *game, char *map_file);
+int    			key_press(int keycode, t_game *game);
+int    			key_release(int keycode, t_game *game);
+int    			game_loop(t_game *game);
 
 // init map && init map utils
 char			**get_map(char *map_file, t_game *game, int err);
@@ -135,5 +147,8 @@ void			put_that_img(void *img, int x, int y, t_game *game);
 
 // put_text
 void			put_text(t_game *game);
+
+//animations
+void            animate_collectibles(t_game *game, long now);
 
 #endif

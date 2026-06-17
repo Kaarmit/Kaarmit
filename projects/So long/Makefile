@@ -6,7 +6,7 @@
 #    By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/12 11:48:48 by aarmitan          #+#    #+#              #
-#    Updated: 2024/10/16 16:07:21 by aarmitan         ###   ########.fr        #
+#    Updated: 2026/06/17 12:32:48 by aarmitan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC			= so_long.c \
 			check_map_utils.c \
 			init_game.c \
 			move_to.c \
-			put_text.c
+			put_text.c \
+			animations.c
 SRCS		= $(addprefix $(SRC_PATH), $(SRC))
 
 OBJ_PATH	= obj/

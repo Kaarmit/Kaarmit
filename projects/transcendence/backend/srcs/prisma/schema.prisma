@@ -1,0 +1,124 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Users ─────────────────────────────────────────────────────────────────────
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  password  String
+  avatarUrl String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 2FA
+  twoFactorEnabled     Boolean   @default(false)
+  twoFactorSecret      String?
+  twoFactorConfirmedAt DateTime?
+
+  // PetState
+  petState PetState?
+
+  // Customizations
+  catName    String?
+  cat        String @default("beigecat")
+  color      String @default("#FF69B4")
+  background String @default("/backgrounds/city.png")
+
+  // Friends
+  sentRequests     FriendRequest[] @relation("SentRequests")
+  receivedRequests FriendRequest[] @relation("ReceivedRequests")
+
+  // Chat
+  conversations ConversationParticipant[]
+  messages      Message[]
+  reads         MessageRead[]
+}
+
+// ── Friends ───────────────────────────────────────────────────────────────────
+
+model FriendRequest {
+  id         Int           @id @default(autoincrement())
+  status     RequestStatus @default(PENDING)
+  fromUserId Int
+  toUserId   Int
+  fromUser   User          @relation("SentRequests", fields: [fromUserId], references: [id])
+  toUser     User          @relation("ReceivedRequests", fields: [toUserId], references: [id])
+  createdAt  DateTime      @default(now())
+
+  @@unique([fromUserId, toUserId])
+  @@index([toUserId])
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REFUSED
+}
+
+// ── Chat ──────────────────────────────────────────────────────────────────────
+
+model Conversation {
+  id           Int      @id @default(autoincrement())
+  createdAt    DateTime @default(now())
+  lastActivity DateTime @default(now())
+
+  participants ConversationParticipant[]
+  messages     Message[]
+}
+
+model ConversationParticipant {
+  userId         Int
+  conversationId Int
+  user           User         @relation(fields: [userId], references: [id])
+  conversation   Conversation @relation(fields: [conversationId], references: [id])
+
+  @@id([userId, conversationId])
+}
+
+model Message {
+  id             Int      @id @default(autoincrement())
+  content        String   @db.VarChar(2000)
+  createdAt      DateTime @default(now())
+  senderId       Int
+  conversationId Int
+
+  sender       User         @relation(fields: [senderId], references: [id])
+  conversation Conversation @relation(fields: [conversationId], references: [id])
+  readBy       MessageRead[]
+}
+
+model MessageRead {
+  userId    Int
+  messageId Int
+  user      User    @relation(fields: [userId], references: [id])
+  message   Message @relation(fields: [messageId], references: [id])
+
+  @@id([userId, messageId])
+}
+
+// ── PetState ──────────────────────────────────────────────────────────────────
+
+model PetState {
+  id          Int       @id @default(autoincrement())
+  userId      Int       @unique
+  user        User      @relation(fields: [userId], references: [id])
+  name        String
+  hunger      Int       @default(75)
+  happiness   Int       @default(80)
+  cleanliness Int       @default(85)
+  energy      Int       @default(90)
+  lastFed     DateTime?
+  lastPlayed  DateTime?
+  lastCleaned DateTime?
+  lastSlept   DateTime?
+  updatedAt   DateTime  @updatedAt
+}

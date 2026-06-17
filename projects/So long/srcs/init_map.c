@@ -6,7 +6,7 @@
 /*   By: aarmitan <aarmitan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 11:46:13 by aarmitan          #+#    #+#             */
-/*   Updated: 2024/10/16 16:03:53 by aarmitan         ###   ########.fr       */
+/*   Updated: 2026/06/17 12:28:00 by aarmitan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,14 @@ void	render_map(t_game *game)
 	int	map_y;
 	int	map_x;
 	int	tmp_w;
+	int tmp_h;
 
 	y = 0;
 	map_y = 0;
 	tmp_w = game->map_size.x;
+	tmp_h = game->map_size.y;
 	init_img(game);
-	while (game->map_size.y > 0)
+	while (tmp_h > 0)
 	{
 		x = 0;
 		map_x = 0;
@@ -83,6 +85,6 @@ void	render_map(t_game *game)
 		game->map_size.x = tmp_w;
 		map_y++;
 		y += 50;
-		game->map_size.y--;
+		tmp_h--;
 	}
 }
