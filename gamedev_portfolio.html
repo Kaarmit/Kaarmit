@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex — Game Developer</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161920;
+    --surface2: #1e2230;
+    --accent: #c8ff00;
+    --accent2: #7b5ea7;
+    --text: #e8e8e8;
+    --muted: #6b7280;
+    --border: rgba(255,255,255,0.07);
+    --radius: 8px;
+    --font: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 56px;
+    background: rgba(13,15,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 2.5rem 4rem;
+    max-width: 900px; margin: 0 auto;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.12em;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 2rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 24px; height: 1px; background: var(--accent);
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.08;
+    letter-spacing: -0.03em; margin-bottom: 1.5rem;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted); max-width: 520px;
+    margin-bottom: 3rem; line-height: 1.7;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn {
+    padding: 0.65rem 1.5rem; border-radius: var(--radius);
+    font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none;
+    transition: all 0.18s; border: 1px solid transparent; display: inline-block;
+  }
+  .btn-primary {
+    background: var(--accent); color: #0d0f14; border-color: var(--accent);
+  }
+  .btn-primary:hover { background: #b8ef00; }
+  .btn-outline {
+    background: transparent; color: var(--text); border-color: var(--border);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.25); background: var(--surface); }
+
+  /* GRID TECH TAGS */
+  .tech-strip {
+    display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 4rem;
+  }
+  .tag {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.06em;
+    padding: 4px 10px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+
+  /* SECTION */
+  section { padding: 6rem 2.5rem; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700;
+    letter-spacing: -0.02em; margin-bottom: 3rem;
+    color: var(--text);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .project-card:hover { border-color: rgba(200,255,0,0.25); transform: translateY(-3px); }
+  .project-thumb {
+    width: 100%; aspect-ratio: 16/9;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem; position: relative; overflow: hidden;
+  }
+  .project-thumb-inner {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thumb-a { background: linear-gradient(135deg, #1a1f2e 0%, #2a1f3d 100%); }
+  .thumb-b { background: linear-gradient(135deg, #0f1e1a 0%, #1a2e1f 100%); }
+  .thumb-c { background: linear-gradient(135deg, #1e1510 0%, #2e1a0f 100%); }
+  .thumb-d { background: linear-gradient(135deg, #0f1520 0%, #0f2035 100%); }
+  .project-body { padding: 1.1rem 1.2rem 1.3rem; }
+  .project-title { font-size: 15px; font-weight: 600; margin-bottom: 0.4rem; }
+  .project-desc { font-size: 13px; color: var(--muted); margin-bottom: 1rem; line-height: 1.55; }
+  .project-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .project-tag {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em;
+    padding: 3px 8px; border-radius: 4px;
+    background: var(--surface2); color: var(--muted);
+    text-transform: uppercase;
+  }
+  .project-links { display: flex; gap: 0.6rem; margin-top: 1rem; }
+  .project-link {
+    font-size: 12px; font-weight: 500; padding: 5px 12px;
+    border-radius: 5px; text-decoration: none;
+    border: 1px solid var(--border); color: var(--muted);
+    transition: all 0.15s;
+  }
+  .project-link:hover { color: var(--accent); border-color: rgba(200,255,0,0.3); }
+  .project-link.primary { background: var(--accent); color: #0d0f14; border-color: var(--accent); }
+  .project-link.primary:hover { background: #b8ef00; }
+
+  /* FEATURED */
+  .featured-card {
+    background: var(--surface);
+    border: 1px solid rgba(200,255,0,0.15);
+    border-radius: 12px; overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 1.25rem;
+  }
+  @media (max-width: 600px) { .featured-card { grid-template-columns: 1fr; } }
+  .featured-thumb {
+    aspect-ratio: 4/3; background: linear-gradient(135deg, #12101e 0%, #1e1030 100%);
+    display: flex; align-items: center; justify-content: center; font-size: 4rem;
+    min-height: 200px;
+  }
+  .featured-body { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+  .featured-badge {
+    display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--accent);
+    border: 1px solid rgba(200,255,0,0.3); padding: 3px 10px;
+    border-radius: 4px; margin-bottom: 1rem; width: fit-content;
+  }
+  .featured-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.7rem; letter-spacing: -0.02em; }
+  .featured-desc { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.6; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  @media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+  .about-text { font-size: 14px; color: var(--muted); line-height: 1.8; }
+  .about-text p + p { margin-top: 1rem; }
+  .skills-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .skill-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .skill-name { font-size: 13px; font-weight: 500; min-width: 80px; }
+  .skill-bar { flex: 1; height: 3px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+
+  /* CONTACT */
+  .contact-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 3rem; text-align: center;
+  }
+  .contact-box h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .contact-box p { color: var(--muted); margin-bottom: 2rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border); padding: 2rem 2.5rem;
+    text-align: center; font-size: 12px; color: var(--muted);
+    max-width: 900px; margin: 0 auto;
+  }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* pixel art decorative */
+  .pixel-deco {
+    position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+    opacity: 0.04; font-size: 15rem; pointer-events: none; user-select: none;
+    line-height: 1;
+  }
+  @media (max-width: 700px) { .pixel-deco { display: none; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">alex.dev</span>
+  <div class="nav-links">
+    <a href="#projets">Projets</a>
+    <a href="#about">À propos</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <span class="hero-eyebrow">Game Developer</span>
+  <h1>Je code<br>des <span>jeux vidéo</span><br>& des systèmes.</h1>
+  <p class="hero-sub">Étudiant à l'École 42 Paris, je construis des expériences interactives avec C++, Unity et des technos web — du moteur maison au multijoueur temps réel.</p>
+  <div class="hero-cta">
+    <a href="#projets" class="btn btn-primary">Voir mes projets</a>
+    <a href="#contact" class="btn btn-outline">Me contacter</a>
+  </div>
+  <div class="tech-strip">
+    <span class="tag">C++</span>
+    <span class="tag">C</span>
+    <span class="tag">Unity</span>
+    <span class="tag">TypeScript</span>
+    <span class="tag">React</span>
+    <span class="tag">Node.js</span>
+    <span class="tag">Docker</span>
+    <span class="tag">OpenGL</span>
+  </div>
+  <div class="pixel-deco">🎮</div>
+</div>
+
+<hr class="divider">
+
+<section id="projets">
+  <p class="section-label">Projets</p>
+  <h2 class="section-title">Ce que j'ai construit</h2>
+
+  <!-- Featured -->
+  <div class="featured-card">
+    <div class="featured-thumb">🐱</div>
+    <div class="featured-body">
+      <span class="featured-badge">Projet phare</span>
+      <h3 class="featured-title">ft_transcendence — Nekotchi</h3>
+      <p class="featured-desc">Application web multijoueur avec mini-jeux en temps réel, chat live et système d'authentification JWT. Stack complète : React, Node.js, PostgreSQL, Docker, Socket.io.</p>
+      <div class="project-tags" style="margin-bottom: 1rem;">
+        <span class="project-tag">React</span>
+        <span class="project-tag">Node.js</span>
+        <span class="project-tag">Socket.io</span>
+        <span class="project-tag">Docker</span>
+        <span class="project-tag">PostgreSQL</span>
+      </div>
+      <div class="project-links">
+        <a href="#" class="project-link primary">GitHub</a>
+        <a href="#" class="project-link">Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-thumb thumb-b"><div class="project-thumb-inner">🗺️</div></div>
+      <div class="project-body">
+        <p class="project-title">Cube3D</p>
+        <p class="project-desc">Moteur raycasting en C inspiré de Wolfenstein 3D. Rendu temps réel, gestion des textures, collisions et mini-map.</p>
+        <div class="project-tags">
+          <span class="project-tag">C</span>
+          <span class="project-tag">Raycasting</span>
+          <span class="project-tag">MLX42</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link primary">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb thumb-c"><div class="project-thumb-inner">🐟</div></div>
+      <div class="project-body">
+        <p class="project-title">So Long</p>
+        <p class="project-desc">Jeu 2D tilemap en C avec gestion d'assets, pathfinding basique et rendu via bibliothèque graphique minilibx.</p>
+        <div class="project-tags">
+          <span class="project-tag">C</span>
+          <span class="project-tag">2D</span>
+          <span class="project-tag">MiniLibX</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link primary">GitHub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb thumb-d"><div class="project-thumb-inner">⚙️</div></div>
+      <div class="project-body">
+        <p class="project-title">Ton prochain jeu</p>
+        <p class="project-desc">Un projet Unity ou Godot, un petit jeu standalone — la prochaine pièce du portfolio.</p>
+        <div class="project-tags">
+          <span class="project-tag">Unity</span>
+          <span class="project-tag">C#</span>
+          <span class="project-tag">En cours</span>
+        </div>
+        <div class="project-links">
+          <a href="#" class="project-link">Bientôt</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="about">
+  <p class="section-label">À propos</p>
+  <h2 class="section-title">Qui je suis</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Étudiant à l'École 42 Paris depuis mai 2024, je me forme à la programmation par la pratique : projets concrets, peer learning, zéro cours magistral.</p>
+      <p>Mon objectif : intégrer un studio de jeux vidéo en tant que game developer. Je m'intéresse aux mécaniques de jeu, à l'optimisation bas niveau et au développement en temps réel.</p>
+      <p>J'ai eu l'occasion de travailler chez <strong>Focus Entertainment</strong> et <strong>Succubus Interactive</strong>, deux expériences qui ont confirmé ma direction.</p>
+    </div>
+    <div>
+      <div class="skills-list">
+        <div class="skill-row">
+          <span class="skill-name">C / C++</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">TypeScript</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 72%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">React</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 68%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Docker</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 65%"></div></div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Unity</span>
+          <div class="skill-bar"><div class="skill-fill" style="width: 40%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="contact">
+  <div class="contact-box">
+    <h3>Travaillons ensemble</h3>
+    <p>Je recherche un stage de fin d'études ou une alternance en développement jeux vidéo en France.</p>
+    <div class="contact-links">
+      <a href="mailto:alex@example.com" class="btn btn-primary">M'envoyer un mail</a>
+      <a href="#" class="btn btn-outline">LinkedIn</a>
+      <a href="#" class="btn btn-outline">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Fait avec du C, du café et beaucoup de git commits — Alex, 2025</p>
+</footer>
+
+</body>
+</html>
